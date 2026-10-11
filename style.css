@@ -606,3 +606,67 @@ button:disabled {
   font-weight: 600;
   margin-bottom: 0;
 }
+
+/* =========================================================
+   Learn Chord Progressions - Cards
+   ========================================================= */
+.progression-card {
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.progression-card h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+/* =========================================================
+   Learn Chord Progressions - Progression Button Grid
+   ========================================================= */
+
+.progression-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.progression-buttons button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  text-align: left;
+  padding: 16px;
+  min-width: 0;
+}
+
+.progression-buttons button strong {
+  font-size: 1.1rem;
+}
+
+.progression-buttons button span {
+  font-size: 0.9rem;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .progression-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .progression-card {
+    padding: 16px;
+  }
+
+  .progression-buttons {
+    grid-template-columns: 1fr;
+  }
+}
