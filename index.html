@@ -8,7 +8,31 @@
 
   <body>
     <div class="app-container">
+      <!-- Universal sound controls -->
+        <div class="sound-control">
+       <button
+         id="soundOnBtn"
+         class="sound-option selected"
+         type="button"
+         aria-label="Turn sound on"
+         aria-pressed="true"
+       >
+        <img src="images/sound-on.png" alt="Sound ON">
+    </button>
+
+    <button
+        id="soundOffBtn"
+        class="sound-option"
+        type="button"
+        aria-label="Turn sound off"
+        aria-pressed="false"
+    >
+        <img src="images/sound-off.png" alt="Sound OFF">
+    </button>
+</div>
+
       <div id="homeScreen">
+
         <header class="app-header">
           <h1>Music Theory App</h1>
         </header>
@@ -636,7 +660,9 @@
       </section>
 
       <script src="musicTheory.js"></script>
+      <script src="audioManager.js"></script>
       <script src="app.js"></script>
     </div>
   </body>
 </html>
+

@@ -489,6 +489,7 @@ document
     questionsAsked++;
     if (correct) {
       questionsCorrect++;
+      audioManager.playAnswerSound(true);
 
       const displayChord = prettyMusic(
         chordSymbol(currentQuestion.root, currentQuestion.type),
@@ -517,6 +518,7 @@ document
 
       updateScoreBoard();
     } else {
+      audioManager.playAnswerSound(false);
       const analysis = getChordAnalysis(
         currentQuestion.root,
         currentQuestion.type,
@@ -770,6 +772,7 @@ document
 //     showQuizBtn.
 // ===============================================================
 document.getElementById("showQuizBtn").addEventListener("click", function () {
+  audioManager.stopMusic();
   homeScreen.style.display = "none";
   builderSection.style.display = "none";
   quizSection.style.display = "block";
@@ -912,6 +915,9 @@ document
 
 function showHome() {
   homeScreen.style.display = "block";
+  if (audioManager.isSoundEnabled()) {
+    audioManager.playBackgroundMusic();
+  }
 
   builderSection.style.display = "none";
 
@@ -924,3 +930,31 @@ function showHome() {
     block: "start",
   });
 }
+
+// ===============================================================
+// GLOBAL SOUND CONTROLS
+// ===============================================================
+
+document.getElementById("soundOnBtn").addEventListener("click", () => {
+  audioManager.setSoundEnabled(true);
+
+  if (homeScreen.style.display !== "none") {
+    audioManager.playBackgroundMusic();
+  }
+
+  document.getElementById("soundOnBtn").classList.add("selected");
+  document.getElementById("soundOffBtn").classList.remove("selected");
+
+  document.getElementById("soundOnBtn").setAttribute("aria-pressed", "true");
+  document.getElementById("soundOffBtn").setAttribute("aria-pressed", "false");
+});
+
+document.getElementById("soundOffBtn").addEventListener("click", () => {
+  audioManager.setSoundEnabled(false);
+
+  document.getElementById("soundOffBtn").classList.add("selected");
+  document.getElementById("soundOnBtn").classList.remove("selected");
+
+  document.getElementById("soundOffBtn").setAttribute("aria-pressed", "true");
+  document.getElementById("soundOnBtn").setAttribute("aria-pressed", "false");
+});
