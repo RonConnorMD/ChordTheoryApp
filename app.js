@@ -791,6 +791,7 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 document
   .getElementById("learnProgressionsHomeBtn")
   .addEventListener("click", function () {
+    audioManager.stopMusic();
     homeScreen.style.display = "none";
     builderSection.style.display = "none";
     quizSection.style.display = "none";
@@ -889,6 +890,9 @@ document
     progressionsSection.style.display = "none";
     homeScreen.style.display = "block";
     appHeader.style.display = "block";
+    if (audioManager.isSoundEnabled()) {
+      audioManager.playBackgroundMusic();
+    }
 
     homeScreen.scrollIntoView({
       behavior: "smooth",
