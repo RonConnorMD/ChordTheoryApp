@@ -754,6 +754,7 @@ const appHeader = document.querySelector(".app-header");
 document
   .getElementById("showBuilderBtn")
   .addEventListener("click", function () {
+    audioManager.stopMusic();
     homeScreen.style.display = "none";
     builderSection.style.display = "block";
     quizSection.style.display = "none";

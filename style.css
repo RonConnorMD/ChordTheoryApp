@@ -310,15 +310,16 @@ button:disabled {
 }
 
 .home-category-card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-rows: 38px 48px 150px 150px;
+  align-content: start;
+  gap: 12px;
 
   padding: 20px;
-
   background: #eeeeee;
   border: 1px solid #ddd;
   border-radius: 12px;
+  box-sizing: border-box;
 }
 
 .category-title {
@@ -330,8 +331,7 @@ button:disabled {
 .category-description {
   text-align: center;
   color: #666;
-  margin: 0 0 20px;
-  min-height: 2.5em;
+  margin: 0 0 12px;
 }
 
 .home-card {
@@ -341,19 +341,18 @@ button:disabled {
   justify-content: center;
 
   width: 100%;
-  min-height: 130px;
+  height: 150px;
+  min-height: 150px;
   box-sizing: border-box;
 
-  margin: 0 0 12px;
+  margin: 0;
   padding: 18px 12px;
 
   background: white;
-
   border: 1px solid #ddd;
   border-radius: 12px;
 
   text-align: center;
-
   cursor: pointer;
 
   transition: transform 0.15s ease;
@@ -397,7 +396,8 @@ button:disabled {
 
 @media (max-width: 650px) {
   .home-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
   }
 }
 
@@ -736,4 +736,13 @@ button:disabled {
   filter: grayscale(1);
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* Fix home-screen progression button alignment */
+.home-card.progression-card {
+  height: 150px;
+  min-height: 150px;
+  margin: 0;
+  padding: 18px 12px;
+  box-sizing: border-box;
 }
