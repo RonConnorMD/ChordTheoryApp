@@ -155,6 +155,7 @@ const CORE_CHORDS = [
   "major7",
   "dominant7",
   "minor7",
+  "major6",
 ];
 
 const DISPLAY_NAMES = {
@@ -165,6 +166,8 @@ const DISPLAY_NAMES = {
   sus2: "Sus2",
   sus4: "Sus4",
   add9: "Add9",
+  major6: "6",
+  minor6: "m6",
   major7: "Maj7",
   dominant7: "7",
   minor7: "m7",
@@ -228,12 +231,14 @@ const chordContainer = document.getElementById("chordButtons");
   "sus4",
   "add9",
 
+  "major6",
+  "minor6",
+
   "major7",
   "dominant7",
   "minor7",
 
   "halfDiminished7",
-  "diminished7",
 
   "major9",
   "dominant9",

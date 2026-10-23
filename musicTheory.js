@@ -99,6 +99,20 @@ const CHORDS = {
     { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
   ],
 
+  major6: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 9, letterSteps: 5, degree: "6", interval: "Major 6th" },
+  ],
+
+  minor6: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 9, letterSteps: 5, degree: "6", interval: "Major 6th" },
+  ],
+
   halfDiminished7: [
     { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
     { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
@@ -173,6 +187,9 @@ const CHORD_SYMBOLS = {
   sus2: "sus2",
   sus4: "sus4",
   add9: "add9",
+
+  major6: "6",
+  minor6: "m6",
 
   major7: "maj7",
   dominant7: "7",
