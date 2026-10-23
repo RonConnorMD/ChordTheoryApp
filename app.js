@@ -760,6 +760,7 @@ document
   .getElementById("showBuilderBtn")
   .addEventListener("click", function () {
     audioManager.stopMusic();
+    setSoundControlsAvailability(false);
     homeScreen.style.display = "none";
     builderSection.style.display = "block";
     quizSection.style.display = "none";
@@ -779,6 +780,7 @@ document
 // ===============================================================
 document.getElementById("showQuizBtn").addEventListener("click", function () {
   audioManager.stopMusic();
+  setSoundControlsAvailability(true);
   homeScreen.style.display = "none";
   builderSection.style.display = "none";
   quizSection.style.display = "block";
@@ -798,6 +800,7 @@ document
   .getElementById("learnProgressionsHomeBtn")
   .addEventListener("click", function () {
     audioManager.stopMusic();
+    setSoundControlsAvailability(false);
     homeScreen.style.display = "none";
     builderSection.style.display = "none";
     quizSection.style.display = "none";
@@ -895,6 +898,7 @@ document
   .addEventListener("click", function () {
     progressionsSection.style.display = "none";
     homeScreen.style.display = "block";
+    setSoundControlsAvailability(true);
     appHeader.style.display = "block";
     if (audioManager.isSoundEnabled()) {
       audioManager.playBackgroundMusic();
@@ -925,6 +929,7 @@ document
 
 function showHome() {
   homeScreen.style.display = "block";
+  setSoundControlsAvailability(true);
   if (audioManager.isSoundEnabled()) {
     audioManager.playBackgroundMusic();
   }
@@ -945,8 +950,20 @@ function showHome() {
 // GLOBAL SOUND CONTROLS
 // ===============================================================
 
+function updateSoundPrompt(isSoundOn) {
+  const prompt = document.getElementById("soundPrompt");
+  prompt.style.display = isSoundOn ? "none" : "inline";
+}
+
+function setSoundControlsAvailability(isAvailable) {
+  document.querySelectorAll(".sound-control").forEach((control) => {
+    control.classList.toggle("unavailable", !isAvailable);
+  });
+}
+
 document.getElementById("soundOnBtn").addEventListener("click", () => {
   audioManager.setSoundEnabled(true);
+  updateSoundPrompt(true);
 
   if (homeScreen.style.display !== "none") {
     audioManager.playBackgroundMusic();
@@ -961,6 +978,7 @@ document.getElementById("soundOnBtn").addEventListener("click", () => {
 
 document.getElementById("soundOffBtn").addEventListener("click", () => {
   audioManager.setSoundEnabled(false);
+  updateSoundPrompt(false);
 
   document.getElementById("soundOffBtn").classList.add("selected");
   document.getElementById("soundOnBtn").classList.remove("selected");

@@ -737,6 +737,13 @@ button:disabled {
   outline-offset: 3px;
 }
 
+#soundPrompt {
+  font-size: 13px;
+  color: #777;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
 /* Both buttons gray when sound is unavailable */
 .sound-control.unavailable .sound-option {
   opacity: 0.35;
