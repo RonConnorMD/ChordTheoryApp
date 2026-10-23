@@ -32,6 +32,13 @@ body {
   color: #666;
 }
 
+.app-author {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: normal;
+}
+
 /* ==========================================
    Buttons
    ========================================== */
