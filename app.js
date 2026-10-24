@@ -837,6 +837,12 @@ let selectedProgressionKey = null;
 document.querySelectorAll("#progressionKeyButtons button").forEach((button) => {
   button.addEventListener("click", function () {
     selectedProgressionKey = this.dataset.key;
+    const songExamplesError = document.querySelector(
+      "#progressionSongExamples .error-message",
+    );
+    if (songExamplesError) {
+      songExamplesError.remove();
+    }
 
     document
       .querySelectorAll("#progressionKeyButtons button")
@@ -865,6 +871,7 @@ document.querySelectorAll("#progressionButtons button").forEach((button) => {
     this.classList.add("selected");
     updateProgressionResults();
     updateProgressionLesson();
+    updateProgressionSongExamples();
   });
 });
 
@@ -915,7 +922,7 @@ const PROGRESSION_LESSONS = {
       "Moves from the tonic (I), to the subdominant (IV), to the dominant (V), and back to the tonic (I).",
     character:
       "Familiar, stable, and satisfying. The V chord creates tension that resolves naturally to I.",
-    songs: "La Bamba — Ritchie Valens; Twist and Shout — The Isley Brothers",
+
     tip: "Listen for the tension of V resolving to I.",
   },
 
@@ -979,13 +986,59 @@ function updateProgressionLesson() {
       <h4>Musical character</h4>
       <p>${lesson.character}</p>
 
-      <h4>Familiar songs</h4>
-      <p>${lesson.songs}</p>
-
       <h4>Practice tip</h4>
       <p>${lesson.tip}</p>
     </div>
   `;
+}
+
+// ============================================================
+// SONG EXAMPLES — LEARN PROGRESSIONS
+// ============================================================
+
+function updateProgressionSongExamples() {
+  const container = document.getElementById("progressionSongExamples");
+
+  if (!container || !selectedProgression) {
+    return;
+  }
+
+  if (selectedProgression !== "I-IV-V-I") {
+    container.innerHTML = "";
+    return;
+  }
+
+  if (!selectedProgressionKey) {
+    container.innerHTML = `
+    <p class="error-message">
+      Please select a key above to see the song examples.
+    </p>
+  `;
+    return;
+  }
+
+  const key = selectedProgressionKey;
+
+  container.innerHTML = `
+    <details class="progression-song-examples-card">
+      <summary>Song Examples (1)</summary>
+
+      <div class="song-example">
+        <h3>Jingle Bells</h3>
+        <p><strong>Key:</strong> ${key} major</p>
+        <p><strong>Roman numerals:</strong> I – IV – V – I</p>
+        <p><strong>Chords:</strong> <span id="jingleBellsChords"></span></p>
+        <p>
+          Listen for the movement from the tonic (I),
+          to the subdominant (IV), to the dominant (V),
+          and back to the tonic (I).
+        </p>
+      </div>
+    </details>
+  `;
+
+  const chords = buildProgressionChords(key, ["I", "IV", "V", "I"]);
+  document.getElementById("jingleBellsChords").textContent = chords.join(" – ");
 }
 
 // ===============================================================
