@@ -880,15 +880,29 @@ function updateProgressionResults() {
   }
 
   const progression = CHORD_PROGRESSIONS[selectedProgression];
-  const chords = buildChordProgression(
+  const triads = buildChordProgression(
     selectedProgressionKey,
     selectedProgression,
+    "triads",
+  );
+
+  const seventhChords = buildChordProgression(
+    selectedProgressionKey,
+    selectedProgression,
+    "sevenths",
   );
 
   results.innerHTML = `
-    <h2>${prettyMusic(progression.name)}</h2>
-    <p>${prettyMusic(chords.join(" – "))}</p>
-  `;
+  <h2>${prettyMusic(progression.name)}</h2>
+
+  <div class="progression-chord-results">
+    <h3>Triads</h3>
+    <p>${prettyMusic(triads.join(" → "))}</p>
+
+    <h3>Seventh Chords</h3>
+    <p>${prettyMusic(seventhChords.join(" → "))}</p>
+  </div>
+`;
 }
 
 // ============================================================

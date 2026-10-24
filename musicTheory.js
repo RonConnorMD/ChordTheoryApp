@@ -775,7 +775,7 @@ const CHORD_PROGRESSIONS = {
 // ===============================================================
 // Build Chord Progression
 // ===============================================================
-function buildChordProgression(key, progressionId) {
+function buildChordProgression(key, progressionId, chordType = "triads") {
   const progression = CHORD_PROGRESSIONS[progressionId];
 
   if (!progression) {
@@ -787,6 +787,16 @@ function buildChordProgression(key, progressionId) {
   return progression.chords.map((chord) => {
     const root = noteToString(majorScale[chord.degree - 1]);
 
-    return chordSymbol(root, chord.type);
+    let type = chord.type;
+
+    if (chordType === "sevenths") {
+      if (chord.type === "major") {
+        type = chord.degree === 5 ? "dominant7" : "major7";
+      } else if (chord.type === "minor") {
+        type = "minor7";
+      }
+    }
+
+    return chordSymbol(root, type);
   });
 }
