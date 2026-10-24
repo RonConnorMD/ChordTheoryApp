@@ -864,6 +864,7 @@ document.querySelectorAll("#progressionButtons button").forEach((button) => {
 
     this.classList.add("selected");
     updateProgressionResults();
+    updateProgressionLesson();
   });
 });
 
@@ -887,6 +888,89 @@ function updateProgressionResults() {
   results.innerHTML = `
     <h2>${prettyMusic(progression.name)}</h2>
     <p>${prettyMusic(chords.join(" – "))}</p>
+  `;
+}
+
+// ============================================================
+// LEARN PROGRESSIONS — EDUCATIONAL CONTENT
+// ============================================================
+
+const PROGRESSION_LESSONS = {
+  "I-IV-V-I": {
+    meaning:
+      "Moves from the tonic (I), to the subdominant (IV), to the dominant (V), and back to the tonic (I).",
+    character:
+      "Familiar, stable, and satisfying. The V chord creates tension that resolves naturally to I.",
+    songs: "La Bamba — Ritchie Valens; Twist and Shout — The Isley Brothers",
+    tip: "Listen for the tension of V resolving to I.",
+  },
+
+  "I-V-vi-IV": {
+    meaning:
+      "Moves from the tonic (I), to the dominant (V), to the relative minor (vi), and then to the subdominant (IV).",
+    character:
+      "Modern, flowing, and emotionally expressive. The vi chord adds a reflective minor color.",
+    songs: "With or Without You — U2; Let It Be — The Beatles",
+    tip: "Notice how the minor vi chord changes the mood without leaving the major key.",
+  },
+
+  "I-vi-IV-V": {
+    meaning:
+      "Moves from the tonic (I), to the relative minor (vi), to the subdominant (IV), and then to the dominant (V).",
+    character:
+      "Warm, melodic, and nostalgic. Common in 1950s and early 1960s pop music.",
+    songs: "Heart and Soul — Hoagy Carmichael; Stand by Me — Ben E. King",
+    tip: "Listen for the movement from the major I chord to the minor vi chord.",
+  },
+
+  "ii-V-I": {
+    meaning:
+      "Moves from the supertonic minor chord (ii), to the dominant (V), and resolves to the tonic (I).",
+    character:
+      "A cornerstone of jazz harmony. The dominant chord creates tension that resolves to I.",
+    songs: "Autumn Leaves — Joseph Kosma; Satin Doll — Duke Ellington",
+    tip: "Practice this progression in all 12 keys and listen for smooth voice leading.",
+  },
+
+  "I-IV-I-V": {
+    meaning:
+      "Moves from the tonic (I), to the subdominant (IV), returns to the tonic (I), and then moves to the dominant (V).",
+    character: "Straightforward and familiar, with a strong sense of home.",
+    songs: "Commonly found in traditional folk and country music.",
+    tip: "Try resolving the final V chord back to I to hear how the progression continues.",
+  },
+};
+
+function updateProgressionLesson() {
+  const lessonContainer = document.getElementById("progressionLearning");
+
+  if (!lessonContainer || !selectedProgression) {
+    return;
+  }
+
+  const lesson = PROGRESSION_LESSONS[selectedProgression];
+
+  if (!lesson) {
+    lessonContainer.innerHTML = "";
+    return;
+  }
+
+  lessonContainer.innerHTML = `
+    <div class="progression-lesson-card">
+      <h3>Learn This Progression</h3>
+
+      <h4>How it works</h4>
+      <p>${lesson.meaning}</p>
+
+      <h4>Musical character</h4>
+      <p>${lesson.character}</p>
+
+      <h4>Familiar songs</h4>
+      <p>${lesson.songs}</p>
+
+      <h4>Practice tip</h4>
+      <p>${lesson.tip}</p>
+    </div>
   `;
 }
 

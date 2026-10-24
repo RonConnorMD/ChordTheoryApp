@@ -614,6 +614,30 @@ button:disabled {
   margin-bottom: 0;
 }
 
+/* LEARN PROGRESSIONS — LEARNING CONTENT CARD */
+.progression-learning {
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.progression-learning h3 {
+  margin-top: 0;
+}
+
+.progression-learning h4 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.progression-learning p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
 /* =========================================================
    Learn Chord Progressions - Cards
    ========================================================= */
