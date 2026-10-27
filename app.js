@@ -851,6 +851,7 @@ document.querySelectorAll("#progressionKeyButtons button").forEach((button) => {
       });
     this.classList.add("selected");
     updateProgressionResults();
+    updateProgressionSongExamples();
   });
 });
 
