@@ -1025,9 +1025,47 @@ function updateProgressionSongExamples() {
 
       <div class="song-example">
         <h3>Jingle Bells</h3>
+
         <p><strong>Key:</strong> ${key} major</p>
-        <p><strong>Roman numerals:</strong> I – IV – V – I</p>
-        <p><strong>Chords:</strong> <span id="jingleBellsChords"></span></p>
+        <p><strong>Passage:</strong> First verse</p>
+
+<table class="song-chord-table">
+  <thead>
+    <tr>
+      <th>Lyrics</th>
+      <th>Chord</th>
+      <th>Chord name</th>
+      <th>Roman numeral</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dashing through the snow</td>
+      <td id="jingleBellsChord1"></td>
+      <td id="jingleBellsChordName1"></td>
+      <td>I</td>
+    </tr>
+    <tr>
+      <td>In a one-horse open sleigh</td>
+      <td id="jingleBellsChord2"></td>
+      <td id="jingleBellsChordName2"></td>
+      <td>IV</td>
+    </tr>
+    <tr>
+      <td>O'er the fields we go</td>
+      <td id="jingleBellsChord3"></td>
+      <td id="jingleBellsChordName3"></td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <td>Laughing all the way</td>
+      <td id="jingleBellsChord4"></td>
+      <td id="jingleBellsChordName4"></td>
+      <td>I</td>
+    </tr>
+  </tbody>
+</table>
+
         <p>
           Listen for the movement from the tonic (I),
           to the subdominant (IV), to the dominant (V),
@@ -1037,8 +1075,16 @@ function updateProgressionSongExamples() {
     </details>
   `;
 
-  const chords = buildProgressionChords(key, ["I", "IV", "V", "I"]);
-  document.getElementById("jingleBellsChords").textContent = chords.join(" – ");
+  const chords = buildChordProgression(key, "I-IV-V-I");
+
+  chords.forEach((chord, index) => {
+    const root = chord.replace(/maj7$/, "");
+
+    document.getElementById(`jingleBellsChord${index + 1}`).textContent = root;
+
+    document.getElementById(`jingleBellsChordName${index + 1}`).textContent =
+      `${root} major`;
+  });
 }
 
 // ===============================================================

@@ -803,3 +803,65 @@ button:disabled {
   border: 1px solid #c62828;
   border-radius: 8px;
 }
+
+/* ============================================================
+   LEARN PROGRESSIONS — SONG CHORD TABLE
+   ============================================================ */
+
+.song-chord-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.song-chord-table th,
+.song-chord-table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+
+.song-chord-table th {
+  font-weight: 700;
+  border-bottom: 2px solid #bbb;
+}
+
+.song-chord-table th:first-child,
+.song-chord-table td:first-child {
+  width: 48%;
+}
+
+.song-chord-table th:nth-child(2),
+.song-chord-table td:nth-child(2) {
+  width: 12%;
+}
+
+.song-chord-table th:nth-child(3),
+.song-chord-table td:nth-child(3) {
+  width: 22%;
+}
+
+.song-chord-table th:last-child,
+.song-chord-table td:last-child {
+  width: 18%;
+}
+
+/* Make the table usable on narrow screens */
+@media (max-width: 600px) {
+  .song-chord-table {
+    font-size: 0.9rem;
+  }
+
+  .song-chord-table th,
+  .song-chord-table td {
+    padding: 8px 6px;
+  }
+
+  .song-chord-table th:first-child,
+  .song-chord-table td:first-child {
+    width: auto;
+  }
+}
