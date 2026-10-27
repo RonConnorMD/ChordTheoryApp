@@ -1004,88 +1004,155 @@ function updateProgressionSongExamples() {
     return;
   }
 
-  if (selectedProgression !== "I-IV-V-I") {
+  const supportedProgressions = ["I-IV-V-I", "I-V-vi-IV"];
+
+  if (!supportedProgressions.includes(selectedProgression)) {
     container.innerHTML = "";
     return;
   }
 
   if (!selectedProgressionKey) {
     container.innerHTML = `
-    <p class="error-message">
-      Please select a key above to see the song examples.
-    </p>
-  `;
+      <p class="error-message">
+        Please select a key above to see the song examples.
+      </p>
+    `;
     return;
   }
 
-  const key = selectedProgressionKey;
+  if (selectedProgression === "I-IV-V-I") {
+    const key = selectedProgressionKey;
 
-  container.innerHTML = `
-    <details class="progression-song-examples-card">
-      <summary>Song Examples (1)</summary>
+    container.innerHTML = `
+      <details class="progression-song-examples-card">
+        <summary>Song Examples (1)</summary>
 
-      <div class="song-example">
-        <h3>Jingle Bells</h3>
+        <div class="song-example">
+          <h3>Jingle Bells</h3>
 
-        <p><strong>Key:</strong> ${key} major</p>
-        <p><strong>Passage:</strong> First verse</p>
+          <p><strong>Key:</strong> ${key} major</p>
+          <p><strong>Passage:</strong> First verse</p>
 
-<table class="song-chord-table">
-  <thead>
-    <tr>
-      <th>Lyrics</th>
-      <th>Chord</th>
-      <th>Chord name</th>
-      <th>Roman numeral</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Dashing through the snow</td>
-      <td id="jingleBellsChord1"></td>
-      <td id="jingleBellsChordName1"></td>
-      <td>I</td>
-    </tr>
-    <tr>
-      <td>In a one-horse open sleigh</td>
-      <td id="jingleBellsChord2"></td>
-      <td id="jingleBellsChordName2"></td>
-      <td>IV</td>
-    </tr>
-    <tr>
-      <td>O'er the fields we go</td>
-      <td id="jingleBellsChord3"></td>
-      <td id="jingleBellsChordName3"></td>
-      <td>V</td>
-    </tr>
-    <tr>
-      <td>Laughing all the way</td>
-      <td id="jingleBellsChord4"></td>
-      <td id="jingleBellsChordName4"></td>
-      <td>I</td>
-    </tr>
-  </tbody>
-</table>
+          <table class="song-chord-table">
+            <thead>
+              <tr>
+                <th>Lyrics</th>
+                <th>Chord</th>
+                <th>Chord name</th>
+                <th>Roman numeral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dashing through the snow</td>
+                <td id="jingleBellsChord1"></td>
+                <td id="jingleBellsChordName1"></td>
+                <td>I</td>
+              </tr>
+              <tr>
+                <td>In a one-horse open sleigh</td>
+                <td id="jingleBellsChord2"></td>
+                <td id="jingleBellsChordName2"></td>
+                <td>IV</td>
+              </tr>
+              <tr>
+                <td>O'er the fields we go</td>
+                <td id="jingleBellsChord3"></td>
+                <td id="jingleBellsChordName3"></td>
+                <td>V</td>
+              </tr>
+              <tr>
+                <td>Laughing all the way</td>
+                <td id="jingleBellsChord4"></td>
+                <td id="jingleBellsChordName4"></td>
+                <td>I</td>
+              </tr>
+            </tbody>
+          </table>
 
-        <p>
-          Listen for the movement from the tonic (I),
-          to the subdominant (IV), to the dominant (V),
-          and back to the tonic (I).
-        </p>
-      </div>
-    </details>
-  `;
+          <p>
+            Listen for the movement from the tonic (I),
+            to the subdominant (IV), to the dominant (V),
+            and back to the tonic (I).
+          </p>
+        </div>
+      </details>
+    `;
 
-  const chords = buildChordProgression(key, "I-IV-V-I");
+    const chords = buildChordProgression(key, "I-IV-V-I");
 
-  chords.forEach((chord, index) => {
-    const root = chord.replace(/maj7$/, "");
+    chords.forEach((chord, index) => {
+      const root = chord.replace(/maj7$/, "");
 
-    document.getElementById(`jingleBellsChord${index + 1}`).textContent = root;
+      document.getElementById(`jingleBellsChord${index + 1}`).textContent =
+        root;
 
-    document.getElementById(`jingleBellsChordName${index + 1}`).textContent =
-      `${root} major`;
-  });
+      document.getElementById(`jingleBellsChordName${index + 1}`).textContent =
+        `${root} major`;
+    });
+
+    return;
+  }
+
+  if (selectedProgression === "I-V-vi-IV") {
+    container.innerHTML = `
+      <details class="progression-song-examples-card">
+        <summary>Song Examples (1)</summary>
+
+        <div class="song-example">
+          <h3>Let It Be — The Beatles</h3>
+
+          <p><strong>Key:</strong> C major</p>
+          <p><strong>Passage:</strong> Opening verse</p>
+
+          <table class="song-chord-table">
+            <thead>
+              <tr>
+                <th>Lyrics</th>
+                <th>Chord</th>
+                <th>Chord name</th>
+                <th>Roman numeral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>When I find myself</td>
+                <td>C</td>
+                <td>C major</td>
+                <td>I</td>
+              </tr>
+              <tr>
+                <td>In times of trouble</td>
+                <td>G</td>
+                <td>G major</td>
+                <td>V</td>
+              </tr>
+              <tr>
+                <td>Mother Mary</td>
+                <td>Am</td>
+                <td>A minor</td>
+                <td>vi</td>
+              </tr>
+              <tr>
+                <td>Comes to me</td>
+                <td>F</td>
+                <td>F major</td>
+                <td>IV</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Listen for the movement from the tonic (I),
+            to the dominant (V), to the relative minor (vi),
+            and then to the subdominant (IV).
+          </p>
+        </div>
+      </details>
+    `;
+
+    return;
+  }
 }
 
 // ===============================================================
