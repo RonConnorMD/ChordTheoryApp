@@ -1004,7 +1004,7 @@ function updateProgressionSongExamples() {
     return;
   }
 
-  const supportedProgressions = ["I-IV-V-I", "I-V-vi-IV"];
+  const supportedProgressions = ["I-IV-V-I", "I-V-vi-IV", "I-vi-IV-V"];
 
   if (!supportedProgressions.includes(selectedProgression)) {
     container.innerHTML = "";
@@ -1097,7 +1097,7 @@ function updateProgressionSongExamples() {
   if (selectedProgression === "I-V-vi-IV") {
     container.innerHTML = `
       <details class="progression-song-examples-card">
-        <summary>Song Examples (1)</summary>
+        <summary>Song Example</summary>
 
         <div class="song-example">
           <h3>Let It Be — The Beatles</h3>
@@ -1146,6 +1146,72 @@ function updateProgressionSongExamples() {
             Listen for the movement from the tonic (I),
             to the dominant (V), to the relative minor (vi),
             and then to the subdominant (IV).
+          </p>
+        </div>
+      </details>
+    `;
+
+    return;
+  }
+
+  if (selectedProgression === "I-vi-IV-V") {
+    container.innerHTML = `
+      <details class="progression-song-examples-card">
+        <summary>Song Example</summary>
+
+        <div class="song-example">
+          <h3>Stand By Me — Ben E. King</h3>
+
+          <p><strong>Key:</strong> A major</p>
+          <p><strong>Passage:</strong> Opening verse</p>
+
+          <table class="song-chord-table">
+            <thead>
+              <tr>
+                <th>Lyrics</th>
+                <th>Chord</th>
+                <th>Chord name</th>
+                <th>Roman numeral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>When the night …</td>
+                <td>A</td>
+                <td>A major</td>
+                <td>I</td>
+              </tr>
+              <tr>
+                <td>… land is dark</td>
+                <td>F#m</td>
+                <td>F# minor</td>
+                <td>vi</td>
+              </tr>
+              <tr>
+                <td>… moon …</td>
+                <td>D</td>
+                <td>D major</td>
+                <td>IV</td>
+              </tr>
+              <tr>
+                <td>… only light …</td>
+                <td>E</td>
+                <td>E major</td>
+                <td>V</td>
+              </tr>
+              <tr>
+                <td>… see</td>
+                <td>A</td>
+                <td>A major</td>
+                <td>I</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Listen for the movement from the tonic (I),
+            to the relative minor (vi), to the subdominant (IV),
+            to the dominant (V), and back to the tonic (I).
           </p>
         </div>
       </details>
