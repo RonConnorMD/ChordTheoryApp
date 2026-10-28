@@ -76,8 +76,6 @@ const audioManager = (() => {
   }
 
   // Play a correct or incorrect answer sound
-  // Play a random correct or incorrect answer sound
-  // Play a random correct or incorrect answer sound
   function playAnswerSound(isCorrect) {
     if (!soundEnabled) return;
 
