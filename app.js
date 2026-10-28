@@ -1009,6 +1009,7 @@ function updateProgressionSongExamples() {
     "I-V-vi-IV",
     "I-vi-IV-V",
     "ii-V-I",
+    "I-IV-I-V",
   ];
 
   if (!supportedProgressions.includes(selectedProgression)) {
@@ -1277,6 +1278,65 @@ function updateProgressionSongExamples() {
             The first three chords demonstrate the major-key
             ii-V-I progression. The fourth chord, IVmaj7,
             continues the phrase.
+          </p>
+        </div>
+      </details>
+    `;
+
+    return;
+  }
+  if (selectedProgression === "I-IV-I-V") {
+    container.innerHTML = `
+      <details class="progression-song-examples-card">
+        <summary>Song Example</summary>
+
+        <div class="song-example">
+          <h3>The Lion Sleeps Tonight — The Tokens</h3>
+
+          <p><strong>Key:</strong> F major</p>
+          <p><strong>Passage:</strong> Opening verse</p>
+
+          <table class="song-chord-table">
+            <thead>
+              <tr>
+                <th>Lyrics</th>
+                <th>Chord</th>
+                <th>Chord name</th>
+                <th>Roman numeral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>In the jungle</td>
+                <td>F</td>
+                <td>F major</td>
+                <td>I</td>
+              </tr>
+              <tr>
+                <td>The mighty jungle</td>
+                <td>Bb</td>
+                <td>B-flat major</td>
+                <td>IV</td>
+              </tr>
+              <tr>
+                <td>The lion sleeps</td>
+                <td>F</td>
+                <td>F major</td>
+                <td>I</td>
+              </tr>
+              <tr>
+                <td>Tonight</td>
+                <td>C7</td>
+                <td>C dominant 7</td>
+                <td>V7</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Listen for the movement from the tonic (I),
+            to the subdominant (IV), back to the tonic (I),
+            and then to the dominant (V).
           </p>
         </div>
       </details>
