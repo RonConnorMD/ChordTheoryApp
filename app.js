@@ -779,6 +779,7 @@ document
 //     showQuizBtn.
 // ===============================================================
 document.getElementById("showQuizBtn").addEventListener("click", function () {
+  selectCoreChords();
   audioManager.stopMusic();
   setSoundControlsAvailability(true);
   homeScreen.style.display = "none";
@@ -1420,6 +1421,22 @@ function showHome() {
     block: "start",
   });
 }
+
+// ============================================================
+// PRACTICE CHORDS — HELP PANEL
+// ============================================================
+
+document
+  .getElementById("practiceHelpBtn")
+  .addEventListener("click", function () {
+    document.getElementById("practiceHelpPanel").style.display = "block";
+  });
+
+document
+  .getElementById("closePracticeHelpBtn")
+  .addEventListener("click", function () {
+    document.getElementById("practiceHelpPanel").style.display = "none";
+  });
 
 // ===============================================================
 // GLOBAL SOUND CONTROLS
