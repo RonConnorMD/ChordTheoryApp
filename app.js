@@ -1025,7 +1025,7 @@ function updateProgressionSongExamples() {
 
     container.innerHTML = `
       <details class="progression-song-examples-card">
-        <summary>Song Examples (1)</summary>
+        <summary>Song Example</summary>
 
         <div class="song-example">
           <h3>Jingle Bells</h3>

@@ -865,3 +865,15 @@ button:disabled {
     width: auto;
   }
 }
+
+/* Song Example collapsible heading */
+.progression-song-examples-card summary {
+  font-size: 22px;
+  font-weight: 700;
+  padding: 14px 18px;
+  margin-top: 12px;
+  background-color: #eaeaea;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  cursor: pointer;
+}
