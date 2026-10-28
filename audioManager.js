@@ -97,7 +97,7 @@ const audioManager = (() => {
       "freesound_community-nailed-it-87033.mp3",
       "freesound_community-yipee-45360.mp3",
       "koiroylers-correct-356013.mp3",
-      "mrstokes302-quotnopequot-male-voice-sfx-mrstokes302-429188.mp3",
+      "mrstokes302-quotyupquot-male-voice-sfx-mrstokes302-428799.mp3",
       "u_a5z4rtk6yn-sonido-correcto-331225.mp3",
     ];
 
@@ -116,7 +116,7 @@ const audioManager = (() => {
       "freesound_community-sadwhisle-91469.mp3",
       "mrstokes302-mm-mm-sfx-mrstokes302-548558.mp3",
       "mrstokes302-oops-sfx-mrstokes302-527192.mp3",
-      "mrstokes302-quotyupquot-male-voice-sfx-mrstokes302-428799.mp3",
+      "mrstokes302-quotnopequot-male-voice-sfx-mrstokes302-429188.mp3",
       "universfield-negative-notification-132470.mp3",
       "universfield-wrong-answer-129254.mp3",
     ];
