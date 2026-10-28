@@ -85,12 +85,11 @@
               </span>
             </button>
 
-            <button class="home-card progression-card" disabled>
-              <span class="card-title">Future Feature</span>
-              <span class="card-subtitle">
-                12 bar blues progressions
+            <button id="bluesOpenBtn" class="home-card progression-card">
+              <span class="card-title">12-Bar Blues</span>
+               <span class="card-subtitle">
+                Explore the 12-bar blues progression
               </span>
-              <span class="coming-soon">Coming Soon</span>
             </button>
 
           </div>
@@ -169,6 +168,63 @@
 <div id="progressionLearning" class="progression-learning"></div>
 <!-- SONG EXAMPLES -->
 <div id="progressionSongExamples" class="progression-song-examples"></div>
+</section>
+
+<!-- 12-BAR BLUES SECTION -->
+<section id="bluesSection" style="display: none">
+  <div class="blues-header">
+    <button id="bluesHomeBtn">← Home</button>
+    <span>Learn 12-Bar Blues</span>
+  </div>
+
+  <!-- BLUES KEY SELECTION -->
+  <div class="blues-card">
+    <h2>Select a Key</h2>
+
+    <div id="bluesKeyButtons" class="blues-key-buttons">
+      <button data-key="C">C</button>
+      <button data-key="Db">D♭</button>
+      <button data-key="D">D</button>
+      <button data-key="Eb">E♭</button>
+      <button data-key="E">E</button>
+      <button data-key="F">F</button>
+      <button data-key="Gb">G♭</button>
+      <button data-key="G">G</button>
+      <button data-key="Ab">A♭</button>
+      <button data-key="A">A</button>
+      <button data-key="Bb">B♭</button>
+      <button data-key="B">B</button>
+    </div>
+  </div>
+
+  <!-- BLUES VARIATION -->
+  <div class="blues-card">
+    <h2>12-Bar Blues Variation</h2>
+
+    <div class="blues-variation-options">
+      <label>
+        <input
+          type="radio"
+          name="bluesVariation"
+          value="standard"
+          checked
+        >
+        Standard
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="bluesVariation"
+          value="quickChange"
+        >
+        Quick Change (IV7 in bar 2)
+      </label>
+    </div>
+  </div>
+
+  <!-- BLUES RESULTS -->
+  <div id="bluesResults" class="blues-card"></div>
 </section>
 
       <section id="builderSection" style="display: none">

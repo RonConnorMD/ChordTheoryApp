@@ -1378,6 +1378,25 @@ document
   .getElementById("practiceChordsHomeBtn")
   .addEventListener("click", showHome);
 
+// ============================================================
+// 12-BAR BLUES — OPEN FROM HOME
+// ============================================================
+
+document.getElementById("bluesOpenBtn").addEventListener("click", function () {
+  homeScreen.style.display = "none";
+  appHeader.style.display = "none";
+  setSoundControlsAvailability(false);
+
+  document.getElementById("bluesSection").style.display = "block";
+
+  audioManager.stopMusic();
+
+  document.getElementById("bluesSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+});
+
 // ===============================================================
 // APP NAVIGATION — RETURN HOME
 //     Display the home screen and hide the other app sections.
@@ -1441,4 +1460,153 @@ document.getElementById("soundOffBtn").addEventListener("click", () => {
 
   document.getElementById("soundOffBtn").setAttribute("aria-pressed", "true");
   document.getElementById("soundOnBtn").setAttribute("aria-pressed", "false");
+});
+
+// ============================================================
+// 12-BAR BLUES — APP NAVIGATION
+// ============================================================
+
+document.getElementById("bluesHomeBtn").addEventListener("click", function () {
+  document.getElementById("bluesSection").style.display = "none";
+  homeScreen.style.display = "block";
+  setSoundControlsAvailability(true);
+  appHeader.style.display = "block";
+
+  if (audioManager.isSoundEnabled()) {
+    audioManager.playBackgroundMusic();
+  }
+
+  homeScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+});
+
+// ============================================================================
+// 12-BAR BLUES — KEY SELECTION AND RESULTS
+// ============================================================================
+
+let selectedBluesKey = null;
+
+document.querySelectorAll("#bluesKeyButtons button").forEach((button) => {
+  button.addEventListener("click", function () {
+    selectedBluesKey = this.dataset.key;
+
+    document
+      .querySelectorAll("#bluesKeyButtons button")
+      .forEach((keyButton) => {
+        keyButton.classList.remove("selected");
+      });
+
+    this.classList.add("selected");
+
+    updateBluesResults();
+  });
+});
+
+// ============================================================
+// 12-BAR BLUES — UPDATE RESULTS
+// Display the 12-bar blues chord progression for the selected key.
+// ============================================================
+function updateBluesResults() {
+  if (!selectedBluesKey) {
+    document.getElementById("bluesResults").innerHTML = "";
+    return;
+  }
+
+  const variation = document.querySelector(
+    'input[name="bluesVariation"]:checked',
+  ).value;
+
+  const key = selectedBluesKey;
+
+  const chords = {
+    C: { I7: "C7", IV7: "F7", V7: "G7" },
+    Db: { I7: "Db7", IV7: "Gb7", V7: "Ab7" },
+    D: { I7: "D7", IV7: "G7", V7: "A7" },
+    Eb: { I7: "Eb7", IV7: "Ab7", V7: "Bb7" },
+    E: { I7: "E7", IV7: "A7", V7: "B7" },
+    F: { I7: "F7", IV7: "Bb7", V7: "C7" },
+    Gb: { I7: "Gb7", IV7: "Cb7", V7: "Db7" },
+    G: { I7: "G7", IV7: "C7", V7: "D7" },
+    Ab: { I7: "Ab7", IV7: "Db7", V7: "Eb7" },
+    A: { I7: "A7", IV7: "D7", V7: "E7" },
+    Bb: { I7: "Bb7", IV7: "Eb7", V7: "F7" },
+    B: { I7: "B7", IV7: "E7", V7: "F#7" },
+  };
+
+  const keyChords = chords[key];
+
+  const bars =
+    variation === "quickChange"
+      ? [
+          { bars: "1", numeral: "I7", chord: keyChords.I7 },
+          { bars: "2", numeral: "IV7", chord: keyChords.IV7 },
+          { bars: "3–4", numeral: "I7", chord: keyChords.I7 },
+        ]
+      : [{ bars: "1–4", numeral: "I7", chord: keyChords.I7 }];
+
+  bars.push(
+    { bars: "5–6", numeral: "IV7", chord: keyChords.IV7 },
+    { bars: "7–8", numeral: "I7", chord: keyChords.I7 },
+    { bars: "9", numeral: "V7", chord: keyChords.V7 },
+    { bars: "10", numeral: "IV7", chord: keyChords.IV7 },
+    { bars: "11", numeral: "I7", chord: keyChords.I7 },
+    { bars: "12", numeral: "V7", chord: keyChords.V7 },
+  );
+
+  const tableRows = bars
+    .map(
+      (bar) => `
+        <tr>
+          <td>${bar.bars}</td>
+          <td>${bar.numeral}</td>
+          <td>${bar.chord}</td>
+        </tr>
+      `,
+    )
+    .join("");
+
+  document.getElementById("bluesResults").innerHTML = `
+    <div class="blues-card">
+      <h2>12-Bar Blues in ${key} — ${variation === "quickChange" ? "Quick Change" : "Standard"}</h2>
+
+      <table class="blues-results-table">
+        <thead>
+          <tr>
+            <th>Bar(s)</th>
+            <th>Roman numeral</th>
+            <th>Chord</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+
+      <p>
+        <strong>Phrase 1 — Bars 1–4:</strong>
+        Establish the tonic (I7).
+      </p>
+
+      <p>
+        <strong>Phrase 2 — Bars 5–8:</strong>
+        Move to the subdominant (IV7), then return to the tonic (I7).
+      </p>
+
+      <p>
+        <strong>Phrase 3 — Bars 9–12:</strong>
+        The turnaround moves from the dominant (V7), to the subdominant
+        (IV7), back to the tonic (I7), and finishes on the dominant (V7).
+      </p>
+    </div>
+  `;
+}
+
+// ============================================================================
+// 12-BAR BLUES — VARIATION SELECTION
+// ============================================================================
+
+document.querySelectorAll('input[name="bluesVariation"]').forEach((radio) => {
+  radio.addEventListener("change", updateBluesResults);
 });
