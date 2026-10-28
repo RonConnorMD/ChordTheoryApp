@@ -1004,7 +1004,12 @@ function updateProgressionSongExamples() {
     return;
   }
 
-  const supportedProgressions = ["I-IV-V-I", "I-V-vi-IV", "I-vi-IV-V"];
+  const supportedProgressions = [
+    "I-IV-V-I",
+    "I-V-vi-IV",
+    "I-vi-IV-V",
+    "ii-V-I",
+  ];
 
   if (!supportedProgressions.includes(selectedProgression)) {
     container.innerHTML = "";
@@ -1212,6 +1217,66 @@ function updateProgressionSongExamples() {
             Listen for the movement from the tonic (I),
             to the relative minor (vi), to the subdominant (IV),
             to the dominant (V), and back to the tonic (I).
+          </p>
+        </div>
+      </details>
+    `;
+
+    return;
+  }
+
+  if (selectedProgression === "ii-V-I") {
+    container.innerHTML = `
+      <details class="progression-song-examples-card">
+        <summary>Song Example</summary>
+
+        <div class="song-example">
+          <h3>Autumn Leaves — Nat King Cole</h3>
+
+          <p><strong>Key:</strong> F major</p>
+          <p><strong>Passage:</strong> Opening verse</p>
+
+          <table class="song-chord-table">
+            <thead>
+              <tr>
+                <th>Lyrics</th>
+                <th>Chord</th>
+                <th>Chord name</th>
+                <th>Roman numeral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>The falling leaves</td>
+                <td>Gm7</td>
+               <td>G minor 7</td>
+                <td>ii7</td>
+              </tr>
+              <tr>
+                <td>Drift by my window </td>
+                <td>C7</td>
+                <td>C dominant 7</td>
+               <td>V7</td>
+              </tr>
+              <tr>
+                <td>The autumn leaves</td>
+                <td>Fmaj7</td>
+                <td>F major 7</td>
+                <td>Imaj7</td>
+              </tr>
+              <tr>
+                <td>Of red and gold</td>
+                <td>Bbmaj7</td>
+                <td>Bb major 7</td>
+                <td>IVmaj7</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            The first three chords demonstrate the major-key
+            ii-V-I progression. The fourth chord, IVmaj7,
+            continues the phrase.
           </p>
         </div>
       </details>
