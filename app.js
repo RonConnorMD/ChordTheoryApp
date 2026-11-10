@@ -188,7 +188,8 @@ updateLookupButton();
 // ===============================================================
 //    PRACTICE SETTINGS — CHORD FILTER ACTIONS
 //
-// Select all chord types, clear all selections, or select core chords.
+// Select all chord types, clear all selections,
+// or select beginner or expanded chords.
 // ===============================================================
 
 function selectAllChords() {
@@ -200,6 +201,7 @@ function selectAllChords() {
   document.querySelectorAll("#quizFilters details").forEach((group) => {
     group.open = true;
   });
+  updateChordSelectionButtons(null);
 }
 
 function clearAllChords() {
@@ -208,13 +210,17 @@ function clearAllChords() {
     .forEach((cb) => {
       cb.checked = false;
     });
+  updateChordSelectionButtons(null);
 }
 
-function selectCoreChords() {
+// ============================================================
+// SELECT EXPANDED CHORDS
+// ============================================================
+function selectExpandedChords() {
   document
     .querySelectorAll('#quizFilters input[type="checkbox"]')
     .forEach((cb) => {
-      cb.checked = CORE_CHORDS.includes(cb.value);
+      cb.checked = EXPANDED_CHORDS.includes(cb.value);
     });
   document.querySelectorAll("#quizFilters details").forEach((group) => {
     const hasSelectedChord = group.querySelector(
@@ -223,6 +229,28 @@ function selectCoreChords() {
 
     group.open = !!hasSelectedChord;
   });
+  updateChordSelectionButtons("expandedChordsBtn");
+}
+
+// ============================================================
+// SELECT BEGINNER CHORDS
+// ============================================================
+
+function selectBeginnerChords() {
+  document
+    .querySelectorAll('#quizFilters input[type="checkbox"]')
+    .forEach((cb) => {
+      cb.checked = BEGINNER_CHORDS.includes(cb.value);
+    });
+
+  document.querySelectorAll("#quizFilters details").forEach((group) => {
+    const hasSelectedChord = group.querySelector(
+      'input[type="checkbox"]:checked',
+    );
+
+    group.open = !!hasSelectedChord;
+  });
+  updateChordSelectionButtons("beginnerChordsBtn");
 }
 
 // ===============================================================
@@ -242,8 +270,12 @@ document
   .addEventListener("click", clearAllChords);
 
 document
-  .getElementById("coreChordsBtn")
-  .addEventListener("click", selectCoreChords);
+  .getElementById("beginnerChordsBtn")
+  .addEventListener("click", selectBeginnerChords);
+
+document
+  .getElementById("expandedChordsBtn")
+  .addEventListener("click", selectExpandedChords);
 
 // Difficulty Level Buttons
 document.querySelectorAll(".difficulty-btn").forEach((button) => {
@@ -273,13 +305,21 @@ function setQuizNoteButtonsEnabled(enabled) {
   });
 }
 
-// ===============================================================
-//    CORE CHORDS AND DISPLAY NAMES
+// ============================================================
+// BEGINNER CHORD SELECTION
 //
-// Define the chord types included in Core Chords mode and their
+// Beginner Chords includes only major and minor triads.
+// ============================================================
+
+const BEGINNER_CHORDS = ["major", "minor"];
+
+// ===============================================================
+//   EXPANDED CHORDS AND DISPLAY NAMES
+//
+// Define the chord types included in Expanded Chords mode and their
 // labels in the user interface.
 // ===============================================================
-const CORE_CHORDS = [
+const EXPANDED_CHORDS = [
   "major",
   "minor",
   "diminished",
@@ -476,6 +516,18 @@ function setDifficulty(difficulty) {
 
   document.querySelectorAll(".difficulty-btn").forEach((btn) => {
     btn.classList.toggle("selected", btn.dataset.difficulty === difficulty);
+  });
+}
+
+// ============================================================
+// UPDATE CHORD SELECTION BUTTON HIGHLIGHTING
+// ============================================================
+
+function updateChordSelectionButtons(selectedButtonId) {
+  ["beginnerChordsBtn", "expandedChordsBtn"].forEach((id) => {
+    document
+      .getElementById(id)
+      .classList.toggle("selected", id === selectedButtonId);
   });
 }
 
@@ -926,8 +978,8 @@ document
 // ===============================================================
 
 document.getElementById("showQuizBtn").addEventListener("click", function () {
-  // Restore Core Chords
-  selectCoreChords();
+  // Restore Beginner Chords
+  selectBeginnerChords();
 
   // Select natural roots only
   document.querySelectorAll(".naturalRoot").forEach((cb) => {
