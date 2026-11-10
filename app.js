@@ -8,6 +8,134 @@
 // ===============================================================
 
 // ===============================================================
+//     PIANO KEYBOARD — REUSABLE SVG DISPLAY
+// ===============================================================
+
+function renderPianoKeyboard(containerId, chord = []) {
+  const container = document.getElementById(containerId);
+
+  if (!container) return;
+
+  const whiteKeyWidth = 50;
+  const whiteKeyHeight = 160;
+  const blackKeyWidth = 30;
+  const blackKeyHeight = 100;
+
+  const whiteKeys = 14;
+  const keyboardWidth = whiteKeys * whiteKeyWidth;
+
+  const blackKeyPositions = [0, 1, 3, 4, 5, 7, 8, 10, 11, 12];
+
+  let svg = `
+    <svg
+      class="piano-keyboard"
+      viewBox="0 0 ${keyboardWidth} ${whiteKeyHeight}"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Two-octave piano keyboard"
+    >
+  `;
+
+  // Draw the white keys
+  for (let i = 0; i < whiteKeys; i++) {
+    svg += `
+      <rect
+        x="${i * whiteKeyWidth}"
+        y="0"
+        width="${whiteKeyWidth}"
+        height="${whiteKeyHeight}"
+        fill="white"
+        stroke="#333"
+        stroke-width="1"
+      />
+    `;
+  }
+
+  // Draw the black keys
+  blackKeyPositions.forEach((position) => {
+    const x = (position + 1) * whiteKeyWidth - blackKeyWidth / 2;
+
+    svg += `
+      <rect
+        x="${x}"
+        y="0"
+        width="${blackKeyWidth}"
+        height="${blackKeyHeight}"
+        rx="2"
+        fill="#222"
+      />
+    `;
+  });
+
+  // Draw chord tones in root position, relative to C
+  if (chord.length > 0) {
+    const whitePitchPositions = {
+      0: 0, // C
+      2: 1, // D
+      4: 2, // E
+      5: 3, // F
+      7: 4, // G
+      9: 5, // A
+      11: 6, // B
+    };
+
+    const blackPitchPositions = {
+      1: 0, // C#
+      3: 1, // D#
+      6: 3, // F#
+      8: 4, // G#
+      10: 5, // A#
+    };
+
+    const rootPitch = pitchOf(
+      typeof chord[0] === "string" ? parseNote(chord[0]) : chord[0],
+    );
+
+    chord.forEach((note) => {
+      const noteObject = typeof note === "string" ? parseNote(note) : note;
+      const pitch = pitchOf(noteObject);
+
+      // Calculate the note's position above the root
+      const distance = (pitch - rootPitch + 12) % 12;
+      const keyboardPitch = rootPitch + distance;
+
+      const octave = Math.floor(keyboardPitch / 12);
+      const pitchInOctave = keyboardPitch % 12;
+
+      if (whitePitchPositions[pitchInOctave] !== undefined) {
+        const whiteIndex = octave * 7 + whitePitchPositions[pitchInOctave];
+        const x = (whiteIndex + 0.5) * whiteKeyWidth;
+
+        svg += `
+      <circle
+        class="keyboard-dot"
+        cx="${x}"
+        cy="130"
+        r="10"
+      />
+    `;
+      } else if (blackPitchPositions[pitchInOctave] !== undefined) {
+        const whiteIndex = octave * 7 + blackPitchPositions[pitchInOctave];
+        const x = (whiteIndex + 1) * whiteKeyWidth;
+
+        svg += `
+      <circle
+        class="keyboard-dot"
+        cx="${x}"
+        cy="70"
+        r="10"
+      />
+    `;
+      }
+    });
+  }
+
+  svg += "</svg>";
+
+  container.innerHTML = svg;
+}
+
+// ===============================================================
 //    APPLICATION STATE
 //
 // Tracks the user's selections and the current quiz.
@@ -35,6 +163,15 @@ function updateLookupButton() {
 
 function updateSelectedChordDisplay() {
   const display = document.getElementById("selectedChordDisplay");
+  // Clear the keyboard when the selection changes
+  const keyboard = document.getElementById("learnChordKeyboard");
+
+  if (keyboard) {
+    keyboard.innerHTML = "";
+  }
+
+  // Clear previous chord result cards
+  document.getElementById("result").innerHTML = "";
 
   if (!selectedRoot || !selectedChordType) {
     display.textContent = "Select a root and chord type";
@@ -273,6 +410,8 @@ const chordContainer = document.getElementById("chordButtons");
 document.getElementById("lookupBtn").addEventListener("click", function () {
   const chord = buildChord(selectedRoot, selectedChordType);
 
+  renderPianoKeyboard("learnChordKeyboard", chord);
+
   const notes = chordToString(chord);
 
   const prettyNotes = prettyMusic(notes);
@@ -461,6 +600,8 @@ function renderQuizNoteButtons() {
 
       displaySelectedNotes();
 
+      renderPianoKeyboard("practiceChordKeyboard", userAnswer);
+
       document.getElementById("quizAnswer").textContent =
         "Enter " +
         currentQuestion.answer.length +
@@ -596,40 +737,42 @@ difficultyInfoBtn.addEventListener("click", () => {
 //     Generate a new question and reset the answer-selection interface.
 // =======================================================================
 
-document
+document.addEventListener("click", function (event) {
+  const nextButton = event.target.closest(".feedback-next-btn");
 
-  .getElementById("nextQuestionBtn")
+  if (!nextButton) return;
 
-  .addEventListener("click", function () {
-    currentQuestion = buildFilteredQuestion();
+  currentQuestion = buildFilteredQuestion();
 
-    if (!currentQuestion) {
-      return;
-    }
+  if (!currentQuestion) {
+    return;
+  }
 
-    const q = currentQuestion;
+  const q = currentQuestion;
 
-    renderQuizNoteButtons();
+  renderQuizNoteButtons();
 
-    userAnswer = [];
+  userAnswer = [];
 
-    displaySelectedNotes();
+  displaySelectedNotes();
 
-    document.getElementById("quizFeedback").innerHTML = "";
+  document.getElementById("quizFeedback").innerHTML = "";
 
-    document.getElementById("nextQuestionContainer").style.display = "none";
+  document.getElementById("nextQuestionContainer").style.display = "none";
 
-    document.getElementById("checkAnswerBtn").disabled = true;
+  document.getElementById("checkAnswerBtn").disabled = true;
 
-    document.getElementById("quizQuestion").innerHTML = prettyMusic(
-      chordSymbol(q.root, q.type),
-    );
+  document.getElementById("quizQuestion").innerHTML = prettyMusic(
+    chordSymbol(q.root, q.type),
+  );
 
-    document.getElementById("quizAnswer").textContent =
-      `Enter ${q.answer.length} notes • 0 of ${q.answer.length} selected`;
+  document.getElementById("quizAnswer").textContent =
+    `Enter ${q.answer.length} notes • 0 of ${q.answer.length} selected`;
 
-    document.getElementById("quizStatus").textContent = "";
-  });
+  document.getElementById("quizStatus").textContent = "";
+
+  renderPianoKeyboard("practiceChordKeyboard", []);
+});
 
 // ===============================================================
 //     PRACTICE CHORDS — CLEAR ANSWER
@@ -639,6 +782,7 @@ document
   .getElementById("clearAnswerBtn")
   .addEventListener("click", function () {
     userAnswer = [];
+    renderPianoKeyboard("practiceChordKeyboard", []);
     setQuizNoteButtonsEnabled(true);
     displaySelectedNotes();
 
@@ -763,6 +907,9 @@ document
     setSoundControlsAvailability(false);
     homeScreen.style.display = "none";
     builderSection.style.display = "block";
+    // Clear previous Learn Chords results when opening
+    document.getElementById("learnChordKeyboard").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
     quizSection.style.display = "none";
 
     appHeader.style.display = "none";
@@ -775,17 +922,60 @@ document
 
 // ===============================================================
 // APP NAVIGATION — PRACTICE CHORDS
-//     The home-screen button labeled "Practice Chords" uses the ID
-//     showQuizBtn.
+// Start a fresh session with the original default settings.
 // ===============================================================
+
 document.getElementById("showQuizBtn").addEventListener("click", function () {
+  // Restore Core Chords
   selectCoreChords();
+
+  // Select natural roots only
+  document.querySelectorAll(".naturalRoot").forEach((cb) => {
+    cb.checked = true;
+  });
+
+  document.querySelectorAll(".sharpRoot, .flatRoot").forEach((cb) => {
+    cb.checked = false;
+  });
+
+  // Update root group checkboxes
+  document.getElementById("naturalRootsGroup").checked = true;
+  document.getElementById("sharpRootsGroup").checked = false;
+  document.getElementById("flatRootsGroup").checked = false;
+
+  // Restore Start Practice button
+  document.getElementById("newQuestionBtn").style.display = "inline-block";
+  // Restore Beginner difficulty
+  setDifficulty("beginner");
+
+  // Reset practice session and score
+  currentQuestion = null;
+  userAnswer = [];
+  questionsAsked = 0;
+  questionsCorrect = 0;
+  updateScoreBoard();
+
+  // Clear previous question, answers, feedback, and keyboard
+  document.getElementById("quizQuestion").innerHTML = "";
+  document.getElementById("quizAnswer").textContent = "";
+  document.getElementById("quizStatus").textContent = "";
+  document.getElementById("selectedNotes").innerHTML = "";
+  document.getElementById("quizFeedback").innerHTML = "";
+  document.getElementById("quizNoteButtons").innerHTML = "";
+  document.getElementById("practiceChordKeyboard").innerHTML = "";
+
+  // Reset quiz controls
+  document.getElementById("checkAnswerBtn").disabled = true;
+  document.getElementById("nextQuestionContainer").style.display = "none";
+
+  // Disable sound controls in Practice Chords
   audioManager.stopMusic();
-  setSoundControlsAvailability(true);
+  setSoundControlsAvailability(false);
+
+  // Navigate to Practice Chords
   homeScreen.style.display = "none";
   builderSection.style.display = "none";
   quizSection.style.display = "block";
-
   appHeader.style.display = "none";
 
   quizSection.scrollIntoView({
@@ -1377,7 +1567,10 @@ document
 
 document
   .getElementById("practiceChordsHomeBtn")
-  .addEventListener("click", showHome);
+  .addEventListener("click", function () {
+    renderPianoKeyboard("practiceChordKeyboard", []);
+    showHome();
+  });
 
 // ============================================================
 // 12-BAR BLUES — OPEN FROM HOME
@@ -1404,16 +1597,28 @@ document.getElementById("bluesOpenBtn").addEventListener("click", function () {
 // ===============================================================
 
 function showHome() {
+  // Clear Learn Chords results
+  document.getElementById("learnChordKeyboard").innerHTML = "";
+  document.getElementById("result").innerHTML = "";
+
+  // Clear Practice Chords results and selections
+  document.getElementById("quizFeedback").innerHTML = "";
+  document.getElementById("quizQuestion").innerHTML = "";
+  document.getElementById("quizStatus").textContent = "";
+  userAnswer = [];
+  displaySelectedNotes();
+  renderPianoKeyboard("practiceChordKeyboard", []);
+  document.getElementById("checkAnswerBtn").disabled = true;
+
   homeScreen.style.display = "block";
   setSoundControlsAvailability(true);
+
   if (audioManager.isSoundEnabled()) {
     audioManager.playBackgroundMusic();
   }
 
   builderSection.style.display = "none";
-
   quizSection.style.display = "none";
-
   appHeader.style.display = "block";
 
   homeScreen.scrollIntoView({

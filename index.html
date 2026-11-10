@@ -3,50 +3,50 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chord Theory App</title>
-    <meta property="og:title" content="Chord Theory App">
-    <meta property="og:description" content="Learn chords and chord progressions in all 12 keys.">
+    <meta property="og:title" content="Chord Theory App" />
+    <meta
+      property="og:description"
+      content="Learn chords and chord progressions in all 12 keys."
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div class="app-container">
       <!-- Universal sound controls -->
-        <div class="sound-control">
-          <span id="soundPrompt">Click green button for sound</span>
-       <button
-         id="soundOnBtn"
-         class="sound-option sound-control selected"
-         type="button"
-         aria-label="Turn sound on"
-         aria-pressed="true"
-       >
-        <img src="images/sound-on.png" alt="Sound ON">
-    </button>
+      <div class="sound-control">
+        <span id="soundPrompt">Click green button for sound</span>
+        <button
+          id="soundOnBtn"
+          class="sound-option sound-control selected"
+          type="button"
+          aria-label="Turn sound on"
+          aria-pressed="true"
+        >
+          <img src="images/sound-on.png" alt="Sound ON" />
+        </button>
 
-    <button
-        id="soundOffBtn"
-        class="sound-option sound-control"
-        type="button"
-        aria-label="Turn sound off"
-        aria-pressed="false"
-    >
-        <img src="images/sound-off.png" alt="Sound OFF">
-    </button>
-</div>
+        <button
+          id="soundOffBtn"
+          class="sound-option sound-control"
+          type="button"
+          aria-label="Turn sound off"
+          aria-pressed="false"
+        >
+          <img src="images/sound-off.png" alt="Sound OFF" />
+        </button>
+      </div>
 
       <div id="homeScreen">
-
-          <header class="app-header">
-              <h1>Chord Theory App</h1>
-                <p class="app-author">by Ron Connor</p>
-          </header>
+        <header class="app-header">
+          <h1>Chord Theory App</h1>
+          <p class="app-author">by Ron Connor</p>
+        </header>
         <h2 class="home-title">What would you like to do?</h2>
 
-                <div class="home-cards">
-
+        <div class="home-cards">
           <!-- CHORDS CATEGORY -->
           <div class="home-category-card">
-
             <h2 class="category-title">Chords</h2>
 
             <p class="category-description">
@@ -62,23 +62,22 @@
 
             <button id="showQuizBtn" class="home-card">
               <span class="card-title">Practice Chords</span>
-              <span class="card-subtitle">
-                Name the notes in a chord
-              </span>
+              <span class="card-subtitle"> Name the notes in a chord </span>
             </button>
-
           </div>
 
           <!-- CHORD PROGRESSIONS CATEGORY -->
           <div class="home-category-card">
-
             <h2 class="category-title">Chord Progressions</h2>
 
             <p class="category-description">
               Explore and practice chord sequences.
             </p>
 
-           <button id="learnProgressionsHomeBtn" class="home-card progression-card">
+            <button
+              id="learnProgressionsHomeBtn"
+              class="home-card progression-card"
+            >
               <span class="card-title">Learn Progressions</span>
               <span class="card-subtitle">
                 Explore common progressions in all 12 keys
@@ -87,153 +86,148 @@
 
             <button id="bluesOpenBtn" class="home-card progression-card">
               <span class="card-title">12-Bar Blues</span>
-               <span class="card-subtitle">
+              <span class="card-subtitle">
                 Explore the 12-bar blues progression
               </span>
             </button>
-
           </div>
-
         </div>
       </div>
 
-<!-- ========================================================= -->
-<!-- LEARN PROGRESSIONS -->
-<!-- ========================================================= -->
-<section id="progressionsSection" style="display: none">
-  <div class="builder-header">
-    <button id="progressionsHomeBtn">← Home</button>
-    <span id="progressionsInstruction">
-      Select a key and a chord progression
-    </span>
-  </div>
+      <!-- ========================================================= -->
+      <!-- LEARN PROGRESSIONS -->
+      <!-- ========================================================= -->
+      <section id="progressionsSection" style="display: none">
+        <div class="builder-header">
+          <button id="progressionsHomeBtn">← Home</button>
+          <span id="progressionsInstruction">
+            Select a key and a chord progression
+          </span>
+        </div>
 
-  <!-- KEY SELECTION CARD -->
-    <div class="progression-card">
-    <h2>Select a Key</h2>
+        <!-- KEY SELECTION CARD -->
+        <div class="progression-card">
+          <h2>Select a Key</h2>
 
-  <div id="progressionKeyButtons" class="progression-key-buttons">
-    <button data-key="C">C</button>
-    <button data-key="Db">D♭</button>
-    <button data-key="D">D</button>
-    <button data-key="Eb">E♭</button>
-    <button data-key="E">E</button>
-    <button data-key="F">F</button>
-    <button data-key="Gb">G♭</button>
-    <button data-key="G">G</button>
-    <button data-key="Ab">A♭</button>
-    <button data-key="A">A</button>
-    <button data-key="Bb">B♭</button>
-    <button data-key="B">B</button>
-    </div>
-</div>
+          <div id="progressionKeyButtons" class="progression-key-buttons">
+            <button data-key="C">C</button>
+            <button data-key="Db">D♭</button>
+            <button data-key="D">D</button>
+            <button data-key="Eb">E♭</button>
+            <button data-key="E">E</button>
+            <button data-key="F">F</button>
+            <button data-key="Gb">G♭</button>
+            <button data-key="G">G</button>
+            <button data-key="Ab">A♭</button>
+            <button data-key="A">A</button>
+            <button data-key="Bb">B♭</button>
+            <button data-key="B">B</button>
+          </div>
+        </div>
 
-<!-- PROGRESSION SELECTION CARD -->
-<div class="progression-card">
-  <h2>Select a Chord Progression</h2>
+        <!-- PROGRESSION SELECTION CARD -->
+        <div class="progression-card">
+          <h2>Select a Chord Progression</h2>
 
-  <div id="progressionButtons" class="progression-buttons">
-  <button data-progression="I-IV-V-I">
-    <strong>I - IV - V - I</strong>
-    <span>Fundamental major-key progression</span>
-  </button>
+          <div id="progressionButtons" class="progression-buttons">
+            <button data-progression="I-IV-V-I">
+              <strong>I - IV - V - I</strong>
+              <span>Fundamental major-key progression</span>
+            </button>
 
-  <button data-progression="I-V-vi-IV">
-    <strong>I - V - vi - IV</strong>
-    <span>Extremely common in popular music</span>
-  </button>
+            <button data-progression="I-V-vi-IV">
+              <strong>I - V - vi - IV</strong>
+              <span>Extremely common in popular music</span>
+            </button>
 
-  <button data-progression="I-vi-IV-V">
-    <strong>I - vi - IV - V</strong>
-    <span>Classic pop progression</span>
-  </button>
+            <button data-progression="I-vi-IV-V">
+              <strong>I - vi - IV - V</strong>
+              <span>Classic pop progression</span>
+            </button>
 
-  <button data-progression="ii-V-I">
-    <strong>ii - V - I</strong>
-    <span>Fundamental jazz progression</span>
-  </button>
+            <button data-progression="ii-V-I">
+              <strong>ii - V - I</strong>
+              <span>Fundamental jazz progression</span>
+            </button>
 
-  <button data-progression="I-IV-I-V">
-    <strong>I - IV - I - V</strong>
-    <span>Familiar traditional and popular pattern</span>
-   </button>
-  </div>
+            <button data-progression="I-IV-I-V">
+              <strong>I - IV - I - V</strong>
+              <span>Familiar traditional and popular pattern</span>
+            </button>
+          </div>
+        </div>
 
+        <!-- PROGRESSION RESULTS -->
+        <div id="progressionResults" class="progression-results"></div>
+        <!-- PROGRESSION LEARNING CONTENT -->
+        <div id="progressionLearning" class="progression-learning"></div>
+        <!-- SONG EXAMPLES -->
+        <div
+          id="progressionSongExamples"
+          class="progression-song-examples"
+        ></div>
+      </section>
 
-</div>
+      <!-- 12-BAR BLUES SECTION -->
+      <section id="bluesSection" style="display: none">
+        <div class="blues-header">
+          <button id="bluesHomeBtn">← Home</button>
+          <span>Learn 12-Bar Blues</span>
+        </div>
 
-<!-- PROGRESSION RESULTS -->
-<div id="progressionResults" class="progression-results"></div>
-<!-- PROGRESSION LEARNING CONTENT -->
-<div id="progressionLearning" class="progression-learning"></div>
-<!-- SONG EXAMPLES -->
-<div id="progressionSongExamples" class="progression-song-examples"></div>
-</section>
+        <!-- BLUES KEY SELECTION -->
+        <div class="blues-card">
+          <h2>Select a Key</h2>
 
-<!-- 12-BAR BLUES SECTION -->
-<section id="bluesSection" style="display: none">
-  <div class="blues-header">
-    <button id="bluesHomeBtn">← Home</button>
-    <span>Learn 12-Bar Blues</span>
-  </div>
+          <div id="bluesKeyButtons" class="blues-key-buttons">
+            <button data-key="C">C</button>
+            <button data-key="Db">D♭</button>
+            <button data-key="D">D</button>
+            <button data-key="Eb">E♭</button>
+            <button data-key="E">E</button>
+            <button data-key="F">F</button>
+            <button data-key="Gb">G♭</button>
+            <button data-key="G">G</button>
+            <button data-key="Ab">A♭</button>
+            <button data-key="A">A</button>
+            <button data-key="Bb">B♭</button>
+            <button data-key="B">B</button>
+          </div>
+        </div>
 
-  <!-- BLUES KEY SELECTION -->
-  <div class="blues-card">
-    <h2>Select a Key</h2>
+        <!-- BLUES VARIATION -->
+        <div class="blues-card">
+          <h2>12-Bar Blues Variation</h2>
 
-    <div id="bluesKeyButtons" class="blues-key-buttons">
-      <button data-key="C">C</button>
-      <button data-key="Db">D♭</button>
-      <button data-key="D">D</button>
-      <button data-key="Eb">E♭</button>
-      <button data-key="E">E</button>
-      <button data-key="F">F</button>
-      <button data-key="Gb">G♭</button>
-      <button data-key="G">G</button>
-      <button data-key="Ab">A♭</button>
-      <button data-key="A">A</button>
-      <button data-key="Bb">B♭</button>
-      <button data-key="B">B</button>
-    </div>
-  </div>
+          <div class="blues-variation-options">
+            <label>
+              <input
+                type="radio"
+                name="bluesVariation"
+                value="standard"
+                checked
+              />
+              Standard
+            </label>
 
-  <!-- BLUES VARIATION -->
-  <div class="blues-card">
-    <h2>12-Bar Blues Variation</h2>
+            <label>
+              <input type="radio" name="bluesVariation" value="quickChange" />
+              Quick Change (IV7 in bar 2)
+            </label>
+          </div>
+        </div>
 
-    <div class="blues-variation-options">
-      <label>
-        <input
-          type="radio"
-          name="bluesVariation"
-          value="standard"
-          checked
-        >
-        Standard
-      </label>
-
-      <label>
-        <input
-          type="radio"
-          name="bluesVariation"
-          value="quickChange"
-        >
-        Quick Change (IV7 in bar 2)
-      </label>
-    </div>
-  </div>
-
-  <!-- BLUES RESULTS -->
-  <div id="bluesResults" class="blues-card"></div>
-</section>
+        <!-- BLUES RESULTS -->
+        <div id="bluesResults" class="blues-card"></div>
+      </section>
 
       <section id="builderSection" style="display: none">
-      <div class="builder-header">
-        <button id="learnChordsHomeBtn">← Home</button>
-        <span id="builderInstruction">Select a root and chord type</span>
-      </div>
+        <div class="builder-header">
+          <button id="learnChordsHomeBtn">← Home</button>
+          <span id="builderInstruction">Select a root and chord type</span>
+        </div>
 
-<h2>Root Note</h2>
+        <h2>Root Note</h2>
         <div id="rootButtons"></div>
 
         <h2>Chord Type</h2>
@@ -241,8 +235,7 @@
 
         <hr />
 
-        <div id="selectedChordDisplay" class="selected-chord-card">
-        </div>
+        <div id="selectedChordDisplay" class="selected-chord-card"></div>
 
         <button id="lookupBtn">Lookup Chord</button>
 
@@ -250,33 +243,46 @@
 
         <div id="result"></div>
 
+        <div id="learnChordKeyboard" class="keyboard-container"></div>
+
         <hr />
 
         <hr />
       </section>
 
       <section id="quizSection" style="display: none">
-
         <div class="quiz-page-header">
-           <button id="practiceChordsHomeBtn">← Home</button>
-            <h1>Set Up Your Practice Session</h1>
-            <button id="practiceHelpBtn" type="button">Help</button>
+          <button id="practiceChordsHomeBtn">← Home</button>
+          <h1>Set Up Your Practice Session</h1>
+          <button id="practiceHelpBtn" type="button">Help</button>
         </div>
 
-        <div id="practiceHelpPanel" class="setup-card" style="display: none;">
-    <h3>Getting Started</h3>
-    <p>
-        New to chord practice? Start with a few familiar chords and build
-        your skills gradually.
-    </p>
-    <ul>
-        <li><strong>Start small:</strong> Select just a few chord roots, such as C, F, and G.</li>
-        <li><strong>Choose simple chords:</strong> Begin with major and minor triads.</li>
-        <li><strong>Beginner difficulty:</strong> Use this level to practice identifying chord notes.</li>
-        <li><strong>Practice regularly:</strong> Add more roots and chord types as you gain confidence.</li>
-    </ul>
-    <button id="closePracticeHelpBtn" type="button">Close Help</button>
-</div>
+        <div id="practiceHelpPanel" class="setup-card" style="display: none">
+          <h3>Getting Started</h3>
+          <p>
+            New to chord practice? Start with a few familiar chords and build
+            your skills gradually.
+          </p>
+          <ul>
+            <li>
+              <strong>Start small:</strong> Select just a few chord roots, such
+              as C, F, and G.
+            </li>
+            <li>
+              <strong>Choose simple chords:</strong> Begin with major and minor
+              triads.
+            </li>
+            <li>
+              <strong>Beginner difficulty:</strong> Use this level to practice
+              identifying chord notes.
+            </li>
+            <li>
+              <strong>Practice regularly:</strong> Add more roots and chord
+              types as you gain confidence.
+            </li>
+          </ul>
+          <button id="closePracticeHelpBtn" type="button">Close Help</button>
+        </div>
 
         <div class="setup-card">
           <h3>1. Select Chord Roots</h3>
@@ -549,27 +555,27 @@
 
               <div class="filter-options">
                 <label
-   ><input
-    type="checkbox"
-    class="seventhChord"
-    value="major6"
-    checked
-  />
-  6</label
->
-<br />
+                  ><input
+                    type="checkbox"
+                    class="seventhChord"
+                    value="major6"
+                    checked
+                  />
+                  6</label
+                >
+                <br />
 
-<label
-  ><input
-    type="checkbox"
-    class="seventhChord"
-    value="minor6"
-    checked
-  />
-  m6</label
->
-<br />
-                
+                <label
+                  ><input
+                    type="checkbox"
+                    class="seventhChord"
+                    value="minor6"
+                    checked
+                  />
+                  m6</label
+                >
+                <br />
+
                 <label
                   ><input
                     type="checkbox"
@@ -695,71 +701,69 @@
               spellings).
             </div>
 
-            <div class="difficulty-buttons">
-              <button
-                type="button"
-                class="difficulty-btn"
-                data-difficulty="beginner"
-              >
-                Beginner
-              </button>
+            <button
+              type="button"
+              class="difficulty-btn selected"
+              data-difficulty="beginner"
+            >
+              Beginner
+            </button>
 
-              <button
-                type="button"
-                class="difficulty-btn selected"
-                data-difficulty="intermediate"
-              >
-                Intermediate
-              </button>
+            <button
+              type="button"
+              class="difficulty-btn"
+              data-difficulty="intermediate"
+            >
+              Intermediate
+            </button>
 
-              <button
-                type="button"
-                class="difficulty-btn"
-                data-difficulty="advanced"
-              >
-                Advanced
-              </button>
-            </div>
+            <button
+              type="button"
+              class="difficulty-btn"
+              data-difficulty="advanced"
+            >
+              Advanced
+            </button>
           </div>
         </div>
 
-<div class="quiz-toolbar">
-  <div id="scoreBoard">Score: 0 / 0</div>
-  <button id="newQuestionBtn">Start Practice</button>
-</div>
+        <div class="quiz-toolbar">
+          <div id="scoreBoard">Score: 0 / 0</div>
+          <button id="newQuestionBtn">Start Practice</button>
+        </div>
 
-          <div class="question-area">
-            <div class="question-card">
-              <div class="question-label">Create This Chord</div>
+        <div class="question-area">
+          <div class="question-card">
+            <div class="question-label">Create This Chord</div>
 
-              <div id="quizQuestion"></div>
+            <div id="quizQuestion"></div>
 
-              <div id="quizAnswer"></div>
+            <div id="quizAnswer"></div>
 
-              <div id="quizStatus"></div>
-            </div>
+            <div id="quizStatus"></div>
           </div>
+        </div>
 
-          <h3>Selected Notes</h3>
+        <div id="practiceChordKeyboard" class="keyboard-container"></div>
+        <h3>Selected Notes</h3>
 
-          <div id="selectedNotes"></div>
+        <div id="selectedNotes"></div>
 
-          <div id="quizFeedback"></div>
+        <div id="quizFeedback"></div>
 
-          <div id="nextQuestionContainer" style="display: none">
-            <button id="nextQuestionBtn">Next Question</button>
-          </div>
+        <div id="nextQuestionContainer" style="display: none">
+          <button id="nextQuestionBtn">Next Question</button>
+        </div>
 
-          <h3>Available Notes</h3>
+        <h3>Available Notes</h3>
 
-          <div id="quizNoteButtons"></div>
+        <div id="quizNoteButtons"></div>
 
-          <div class="quiz-actions">
-            <button id="checkAnswerBtn" disabled>Check Answer</button>
+        <div class="quiz-actions">
+          <button id="checkAnswerBtn" disabled>Check Answer</button>
 
-            <button id="clearAnswerBtn">Clear Answer</button>
-          </div>
-        </section>
+          <button id="clearAnswerBtn">Clear Answer</button>
+        </div>
       </section>
 
       <script src="musicTheory.js"></script>
@@ -768,4 +772,3 @@
     </div>
   </body>
 </html>
-

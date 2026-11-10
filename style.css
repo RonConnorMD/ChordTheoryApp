@@ -986,3 +986,25 @@ button:disabled {
     padding: 10px 6px;
   }
 }
+
+/* ==========================================
+   TWO-OCTAVE VISUAL PIANO KEYBOARD
+   ========================================== */
+
+.keyboard-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.piano-keyboard {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.keyboard-dot {
+  fill: #e53935;
+  stroke: white;
+  stroke-width: 1.5;
+}
