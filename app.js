@@ -947,13 +947,12 @@ const quizSection = document.getElementById("quizSection");
 
 const appHeader = document.querySelector(".app-header");
 
-// ===============================================================
-//   APP NAVIGATION — LEARN CHORDS
-//     The home-screen button labeled "Learn Chords" uses the ID
-//     showBuilderBtn.
-// ===============================================================
+// ============================================================
+// APP NAVIGATION — LEARN CHORDS
+// The Home screen's Learn Chords button opens builderSection.
+// ============================================================
 document
-  .getElementById("showBuilderBtn")
+  .getElementById("learnChordsBtn")
   .addEventListener("click", function () {
     audioManager.stopMusic();
     setSoundControlsAvailability(false);
