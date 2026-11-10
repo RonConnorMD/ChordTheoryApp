@@ -486,10 +486,19 @@ button:disabled {
 }
 
 #newQuestionBtn {
-  background: #e8f2ff;
+  background: #2563eb;
   border: 2px solid #2563eb;
-  color: #111;
+  color: #fff;
+  font-size: 16px;
   font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#newQuestionBtn:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
 }
 
 #nextQuestionContainer {
