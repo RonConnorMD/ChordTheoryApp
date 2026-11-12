@@ -1086,3 +1086,20 @@ button:disabled {
 #quizSection .quiz-actions {
   margin-top: 6px;
 }
+
+/* ============================================================================
+   LEARN CHORDS – INVERSION DISPLAY
+   ============================================================================ */
+
+.inversion-section {
+  margin-bottom: 16px;
+}
+
+.inversion-card {
+  margin-bottom: 8px;
+}
+
+.inversion-section .keyboard-container {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}

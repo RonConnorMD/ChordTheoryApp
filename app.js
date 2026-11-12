@@ -143,6 +143,21 @@ function renderPianoKeyboard(containerId, chord = []) {
 
 let selectedRoot = null;
 let selectedChordType = null;
+let showingInversions = false;
+
+let currentLearnChord = null;
+
+const INVERSION_CHORD_TYPES = [
+  "major",
+  "minor",
+  "diminished",
+  "augmented",
+  "sus2",
+  "sus4",
+];
+
+const showInversionsBtn = document.getElementById("showInversionsBtn");
+
 let currentQuestion = null;
 let userAnswer = [];
 let questionsAsked = 0;
@@ -162,6 +177,13 @@ function updateLookupButton() {
 }
 
 function updateSelectedChordDisplay() {
+  showingInversions = false;
+
+  showInversionsBtn.hidden = !INVERSION_CHORD_TYPES.includes(selectedChordType);
+
+  showInversionsBtn.textContent = "Show Inversions";
+
+  document.getElementById("inversionDisplay").innerHTML = "";
   const display = document.getElementById("selectedChordDisplay");
   // Clear the keyboard when the selection changes
   const keyboard = document.getElementById("learnChordKeyboard");
@@ -484,7 +506,15 @@ const chordContainer = document.getElementById("chordButtons");
 document.getElementById("lookupBtn").addEventListener("click", function () {
   const chord = buildChord(selectedRoot, selectedChordType);
 
-  renderPianoKeyboard("learnChordKeyboard", chord);
+  currentLearnChord = chord;
+  showingInversions = false;
+  showInversionsBtn.textContent = "Show Inversions";
+
+  if (!showingInversions) {
+    renderPianoKeyboard("learnChordKeyboard", chord);
+  } else {
+    document.getElementById("learnChordKeyboard").innerHTML = "";
+  }
 
   const notes = chordToString(chord);
 
@@ -519,6 +549,102 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
     <div class="card-value">${intervals}</div>
   </div>
   `;
+});
+
+// ============================================================================
+// LEARN CHORDS – CHORD INVERSIONS
+//
+// Rotate the existing chord note objects to produce root position,
+// first inversion, and second inversion.
+//
+// Existing note objects are preserved to maintain correct enharmonic spelling.
+// Applies only to supported three-note chords.
+// ============================================================================
+function getChordInversions(chord) {
+  return [
+    chord,
+    [...chord.slice(1), chord[0]],
+    [...chord.slice(2), ...chord.slice(0, 2)],
+  ];
+}
+
+// ============================================================================
+// LEARN CHORDS – RENDER CHORD INVERSIONS
+//
+// Display root position, first inversion, and second inversion together.
+// ============================================================================
+
+// ============================================================================
+// LEARN CHORDS – RENDER CHORD INVERSIONS
+//
+// Display all three chord positions, each with its own piano keyboard.
+// ============================================================================
+
+function renderChordInversions(chord) {
+  const inversionDisplay = document.getElementById("inversionDisplay");
+
+  if (!chord || chord.length !== 3) {
+    inversionDisplay.innerHTML = "";
+    return;
+  }
+
+  const inversions = getChordInversions(chord);
+
+  const inversionNames = [
+    "Root Position",
+    "First Inversion",
+    "Second Inversion",
+  ];
+
+  const keyboardIds = [
+    "rootInversionKeyboard",
+    "firstInversionKeyboard",
+    "secondInversionKeyboard",
+  ];
+
+  inversionDisplay.innerHTML = inversions
+    .map(
+      (inversion, index) => `
+    <div class="inversion-section">
+      <div class="info-card inversion-card">
+        <div class="card-title">${inversionNames[index]}</div>
+        <div class="card-value">
+          ${chordNotes(inversion).join(" – ")}
+        </div>
+      </div>
+
+      <div id="${keyboardIds[index]}" class="keyboard-container"></div>
+    </div>
+  `,
+    )
+    .join("");
+
+  inversions.forEach((inversion, index) => {
+    renderPianoKeyboard(keyboardIds[index], inversion);
+  });
+}
+
+// ============================================================================
+// LEARN CHORDS – SHOW / HIDE INVERSIONS
+//
+// Toggle the display of all three chord positions.
+// ============================================================================
+
+showInversionsBtn.addEventListener("click", function () {
+  showingInversions = !showingInversions;
+
+  showInversionsBtn.textContent = showingInversions
+    ? "Hide Inversions"
+    : "Show Inversions";
+
+  if (showingInversions) {
+    document.getElementById("learnChordKeyboard").innerHTML = "";
+    renderChordInversions(currentLearnChord);
+  } else {
+    document.getElementById("inversionDisplay").innerHTML = "";
+
+    renderPianoKeyboard("learnChordKeyboard", currentLearnChord);
+  }
 });
 
 // ===============================================================
@@ -1686,7 +1812,25 @@ document.getElementById("bluesOpenBtn").addEventListener("click", function () {
 
 function showHome() {
   // Clear Learn Chords results
+  // Reset Learn Chords selections
+  selectedRoot = null;
+  selectedChordType = null;
+
+  document
+    .querySelectorAll("#rootButtons button, #chordButtons button")
+    .forEach((button) => {
+      button.classList.remove("selected");
+    });
+
+  document.getElementById("selectedChordDisplay").innerHTML = "";
   document.getElementById("learnChordKeyboard").innerHTML = "";
+  showingInversions = false;
+  currentLearnChord = null;
+
+  showInversionsBtn.hidden = true;
+  showInversionsBtn.textContent = "Show Inversions";
+
+  document.getElementById("inversionDisplay").innerHTML = "";
   document.getElementById("result").innerHTML = "";
 
   // Clear Practice Chords results and selections
