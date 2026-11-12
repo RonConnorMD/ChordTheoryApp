@@ -1017,3 +1017,72 @@ button:disabled {
   stroke: white;
   stroke-width: 1.5;
 }
+
+/* ==========================================
+   PRACTICE CHORDS — COMPACT VERTICAL LAYOUT
+   ========================================== */
+
+/* Tighten the three setup sections */
+#quizSection > .setup-card,
+#notePoolDifficulty .setup-card {
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+#quizSection .setup-card h3 {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+/* Scoreboard and Start Practice */
+#quizSection .quiz-toolbar {
+  margin-bottom: 10px;
+}
+
+/* Chord question card */
+#quizSection .question-area {
+  margin: 8px 0;
+}
+
+#quizSection .question-card {
+  padding: 12px;
+}
+
+#quizSection .question-label {
+  margin-bottom: 6px;
+}
+
+/* Piano keyboard */
+#quizSection .keyboard-container {
+  margin: 8px auto;
+}
+
+/* Selected Notes and Available Notes headings */
+#quizSection > h3 {
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+/* Selected Notes container */
+#quizSection #selectedNotes {
+  margin-bottom: 6px;
+}
+
+/* Feedback */
+#quizSection #quizFeedback {
+  margin: 4px 0;
+}
+
+#quizSection .feedback-actions {
+  margin-top: 6px;
+}
+
+/* Next Question */
+#quizSection #nextQuestionContainer {
+  margin-bottom: 6px;
+}
+
+/* Answer controls */
+#quizSection .quiz-actions {
+  margin-top: 6px;
+}
