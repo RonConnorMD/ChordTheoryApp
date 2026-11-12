@@ -299,6 +299,40 @@ function updateScoreBoard() {
     `Score: ${questionsCorrect}/${questionsAsked} • ${accuracy}%`;
 }
 
+// ============================================================
+// PRACTICE SETTINGS — COLLAPSE AND REOPEN
+// ============================================================
+
+function collapsePracticeSettings() {
+  const roots = getSelectedRoots();
+  const chords = getSelectedChordTypes();
+
+  const rootText = roots.join(", ");
+
+  const chordText = chords
+    .map((type) => DISPLAY_NAMES[type] || type)
+    .join(", ");
+
+  const difficultyText =
+    selectedDifficulty.charAt(0).toUpperCase() + selectedDifficulty.slice(1);
+
+  document.getElementById("practiceSettingsSummaryText").textContent =
+    `Roots: ${rootText} | Chords: ${chordText} | Difficulty: ${difficultyText}`;
+
+  document.getElementById("practiceSettingsPanels").hidden = true;
+  document.getElementById("practiceSettingsSummary").hidden = false;
+}
+
+function expandPracticeSettings() {
+  document.getElementById("practiceSettingsPanels").hidden = false;
+  document.getElementById("practiceSettingsSummary").hidden = true;
+}
+
+// Change Settings button
+document
+  .getElementById("changeSettingsBtn")
+  .addEventListener("click", expandPracticeSettings);
+
 function setQuizNoteButtonsEnabled(enabled) {
   document.querySelectorAll("#quizNoteButtons button").forEach((button) => {
     button.disabled = !enabled;
@@ -587,6 +621,7 @@ document
     if (!currentQuestion) {
       return;
     }
+    collapsePracticeSettings();
     document.getElementById("newQuestionBtn").style.display = "none";
     const q = currentQuestion;
 
@@ -996,6 +1031,8 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 
   // Restore Start Practice button
   document.getElementById("newQuestionBtn").style.display = "inline-block";
+  // Restore expanded Practice Settings
+  expandPracticeSettings();
   // Restore Beginner difficulty
   setDifficulty("beginner");
 

@@ -377,448 +377,480 @@
           <button id="closePracticeHelpBtn" type="button">Close Help</button>
         </div>
 
-        <div class="setup-card">
-          <h3>1. Select Chord Roots</h3>
-
-          <div id="rootFilters">
-            <div class="filter-group">
-              <label>
-                <input type="checkbox" id="naturalRootsGroup" checked />
-                Natural Roots
-              </label>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="C"
-                    checked
-                  />
-                  C</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="D"
-                    checked
-                  />
-                  D</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="E"
-                    checked
-                  />
-                  E</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="F"
-                    checked
-                  />
-                  F</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="G"
-                    checked
-                  />
-                  G</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="A"
-                    checked
-                  />
-                  A</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="naturalRoot"
-                    value="B"
-                    checked
-                  />
-                  B</label
-                >
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label>
-                <input type="checkbox" id="sharpRootsGroup" checked />
-                Sharp Roots
-              </label>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="sharpRoot"
-                    value="C#"
-                    checked
-                  />
-                  C#</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="sharpRoot"
-                    value="D#"
-                    checked
-                  />
-                  D#</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="sharpRoot"
-                    value="F#"
-                    checked
-                  />
-                  F#</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="sharpRoot"
-                    value="G#"
-                    checked
-                  />
-                  G#</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="sharpRoot"
-                    value="A#"
-                    checked
-                  />
-                  A#</label
-                >
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <label>
-                <input type="checkbox" id="flatRootsGroup" checked />
-                Flat Roots
-              </label>
-
-              <div class="filter-options">
-                <label
-                  ><input type="checkbox" class="flatRoot" value="Db" checked />
-                  Db</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="flatRoot" value="Eb" checked />
-                  Eb</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="flatRoot" value="Gb" checked />
-                  Gb</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="flatRoot" value="Ab" checked />
-                  Ab</label
-                ><br />
-                <label
-                  ><input type="checkbox" class="flatRoot" value="Bb" checked />
-                  Bb</label
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="setup-card">
-          <h3>2. Select Chord Types</h3>
-
-          <div id="filterActions">
-            <button id="beginnerChordsBtn">Select Beginner Chords</button>
-            <button id="expandedChordsBtn">Select Expanded Chords</button>
-            <button id="selectAllChordsBtn">Select All Chords</button>
-            <button id="clearAllChordsBtn">Clear All Chords</button>
-          </div>
-
-          <div id="quizFilters">
-            <details class="filter-group" open>
-              <summary>
-                <label>
-                  <input type="checkbox" id="triadsGroup" checked />
-                  All Triads
-                </label>
-              </summary>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="triadChord"
-                    value="major"
-                    checked
-                  />
-                  Major</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="triadChord"
-                    value="minor"
-                    checked
-                  />
-                  Minor</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="triadChord"
-                    value="diminished"
-                    checked
-                  />
-                  Diminished</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="triadChord"
-                    value="augmented"
-                    checked
-                  />
-                  Augmented</label
-                >
-              </div>
-            </details>
-
-            <details class="filter-group">
-              <summary>
-                <label>
-                  <input type="checkbox" id="suspendedGroup" checked />
-                  All Suspended/Add9
-                </label>
-              </summary>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="suspendedChord"
-                    value="sus2"
-                    checked
-                  />
-                  Sus2</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="suspendedChord"
-                    value="sus4"
-                    checked
-                  />
-                  Sus4</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="suspendedChord"
-                    value="add9"
-                    checked
-                  />
-                  Add9</label
-                >
-              </div>
-            </details>
-
-            <details class="filter-group">
-              <summary>
-                <label>
-                  <input type="checkbox" id="seventhGroup" checked />
-                  All 6th &amp; 7th Chords
-                </label>
-              </summary>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="major6"
-                    checked
-                  />
-                  6</label
-                >
-                <br />
-
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="minor6"
-                    checked
-                  />
-                  m6</label
-                >
-                <br />
-
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="major7"
-                    checked
-                  />
-                  Maj7</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="dominant7"
-                    checked
-                  />
-                  7</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="minor7"
-                    checked
-                  />
-                  m7</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="halfDiminished7"
-                    checked
-                  />
-                  ø7</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="seventhChord"
-                    value="diminished7"
-                    checked
-                  />
-                  dim7</label
-                >
-              </div>
-            </details>
-
-            <details class="filter-group">
-              <summary>
-                <label>
-                  <input type="checkbox" id="ninthGroup" checked />
-                  All 9th Chords
-                </label>
-              </summary>
-
-              <div class="filter-options">
-                <label
-                  ><input
-                    type="checkbox"
-                    class="ninthChord"
-                    value="major9"
-                    checked
-                  />
-                  Maj9</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="ninthChord"
-                    value="dominant9"
-                    checked
-                  />
-                  9</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="ninthChord"
-                    value="minor9"
-                    checked
-                  />
-                  m9</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="ninthChord"
-                    value="dominant7b9"
-                    checked
-                  />
-                  7♭9</label
-                ><br />
-                <label
-                  ><input
-                    type="checkbox"
-                    class="ninthChord"
-                    value="dominant7sharp9"
-                    checked
-                  />
-                  7♯9</label
-                >
-              </div>
-            </details>
-          </div>
-        </div>
-
-        <div id="notePoolDifficulty">
+        <div id="practiceSettingsPanels">
           <div class="setup-card">
-            <h3>
-              3. Select Difficulty Level
-              <button id="difficultyInfoBtn" class="info-btn">ⓘ</button>
-            </h3>
+            <h3>1. Select Chord Roots</h3>
 
-            <div id="difficultyInfo" class="difficulty-info" hidden>
-              <strong>Beginner</strong> — chord tones plus notes from the root's
-              major scale.<br /><br />
+            <div id="rootFilters">
+              <div class="filter-group">
+                <label>
+                  <input type="checkbox" id="naturalRootsGroup" checked />
+                  Natural Roots
+                </label>
 
-              <strong>Intermediate</strong> — adds related enharmonic
-              spellings.<br /><br />
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="C"
+                      checked
+                    />
+                    C</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="D"
+                      checked
+                    />
+                    D</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="E"
+                      checked
+                    />
+                    E</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="F"
+                      checked
+                    />
+                    F</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="G"
+                      checked
+                    />
+                    G</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="A"
+                      checked
+                    />
+                    A</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="naturalRoot"
+                      value="B"
+                      checked
+                    />
+                    B</label
+                  >
+                </div>
+              </div>
 
-              <strong>Advanced</strong> — full note pool (all available note
-              spellings).
+              <div class="filter-group">
+                <label>
+                  <input type="checkbox" id="sharpRootsGroup" checked />
+                  Sharp Roots
+                </label>
+
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sharpRoot"
+                      value="C#"
+                      checked
+                    />
+                    C#</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sharpRoot"
+                      value="D#"
+                      checked
+                    />
+                    D#</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sharpRoot"
+                      value="F#"
+                      checked
+                    />
+                    F#</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sharpRoot"
+                      value="G#"
+                      checked
+                    />
+                    G#</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="sharpRoot"
+                      value="A#"
+                      checked
+                    />
+                    A#</label
+                  >
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <label>
+                  <input type="checkbox" id="flatRootsGroup" checked />
+                  Flat Roots
+                </label>
+
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="flatRoot"
+                      value="Db"
+                      checked
+                    />
+                    Db</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="flatRoot"
+                      value="Eb"
+                      checked
+                    />
+                    Eb</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="flatRoot"
+                      value="Gb"
+                      checked
+                    />
+                    Gb</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="flatRoot"
+                      value="Ab"
+                      checked
+                    />
+                    Ab</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="flatRoot"
+                      value="Bb"
+                      checked
+                    />
+                    Bb</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="setup-card">
+            <h3>2. Select Chord Types</h3>
+
+            <div id="filterActions">
+              <button id="beginnerChordsBtn">Select Beginner Chords</button>
+              <button id="expandedChordsBtn">Select Expanded Chords</button>
+              <button id="selectAllChordsBtn">Select All Chords</button>
+              <button id="clearAllChordsBtn">Clear All Chords</button>
             </div>
 
-            <button
-              type="button"
-              class="difficulty-btn selected"
-              data-difficulty="beginner"
-            >
-              Beginner
-            </button>
+            <div id="quizFilters">
+              <details class="filter-group" open>
+                <summary>
+                  <label>
+                    <input type="checkbox" id="triadsGroup" checked />
+                    All Triads
+                  </label>
+                </summary>
 
-            <button
-              type="button"
-              class="difficulty-btn"
-              data-difficulty="intermediate"
-            >
-              Intermediate
-            </button>
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="triadChord"
+                      value="major"
+                      checked
+                    />
+                    Major</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="triadChord"
+                      value="minor"
+                      checked
+                    />
+                    Minor</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="triadChord"
+                      value="diminished"
+                      checked
+                    />
+                    Diminished</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="triadChord"
+                      value="augmented"
+                      checked
+                    />
+                    Augmented</label
+                  >
+                </div>
+              </details>
 
-            <button
-              type="button"
-              class="difficulty-btn"
-              data-difficulty="advanced"
-            >
-              Advanced
-            </button>
+              <details class="filter-group">
+                <summary>
+                  <label>
+                    <input type="checkbox" id="suspendedGroup" checked />
+                    All Suspended/Add9
+                  </label>
+                </summary>
+
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="suspendedChord"
+                      value="sus2"
+                      checked
+                    />
+                    Sus2</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="suspendedChord"
+                      value="sus4"
+                      checked
+                    />
+                    Sus4</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="suspendedChord"
+                      value="add9"
+                      checked
+                    />
+                    Add9</label
+                  >
+                </div>
+              </details>
+
+              <details class="filter-group">
+                <summary>
+                  <label>
+                    <input type="checkbox" id="seventhGroup" checked />
+                    All 6th &amp; 7th Chords
+                  </label>
+                </summary>
+
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="major6"
+                      checked
+                    />
+                    6</label
+                  >
+                  <br />
+
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="minor6"
+                      checked
+                    />
+                    m6</label
+                  >
+                  <br />
+
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="major7"
+                      checked
+                    />
+                    Maj7</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="dominant7"
+                      checked
+                    />
+                    7</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="minor7"
+                      checked
+                    />
+                    m7</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="halfDiminished7"
+                      checked
+                    />
+                    ø7</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="seventhChord"
+                      value="diminished7"
+                      checked
+                    />
+                    dim7</label
+                  >
+                </div>
+              </details>
+
+              <details class="filter-group">
+                <summary>
+                  <label>
+                    <input type="checkbox" id="ninthGroup" checked />
+                    All 9th Chords
+                  </label>
+                </summary>
+
+                <div class="filter-options">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="ninthChord"
+                      value="major9"
+                      checked
+                    />
+                    Maj9</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="ninthChord"
+                      value="dominant9"
+                      checked
+                    />
+                    9</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="ninthChord"
+                      value="minor9"
+                      checked
+                    />
+                    m9</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="ninthChord"
+                      value="dominant7b9"
+                      checked
+                    />
+                    7♭9</label
+                  ><br />
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="ninthChord"
+                      value="dominant7sharp9"
+                      checked
+                    />
+                    7♯9</label
+                  >
+                </div>
+              </details>
+            </div>
           </div>
+
+          <div id="notePoolDifficulty">
+            <div class="setup-card">
+              <h3>
+                3. Select Difficulty Level
+                <button id="difficultyInfoBtn" class="info-btn">ⓘ</button>
+              </h3>
+
+              <div id="difficultyInfo" class="difficulty-info" hidden>
+                <strong>Beginner</strong> — chord tones plus notes from the
+                root's major scale.<br /><br />
+
+                <strong>Intermediate</strong> — adds related enharmonic
+                spellings.<br /><br />
+
+                <strong>Advanced</strong> — full note pool (all available note
+                spellings).
+              </div>
+
+              <button
+                type="button"
+                class="difficulty-btn selected"
+                data-difficulty="beginner"
+              >
+                Beginner
+              </button>
+
+              <button
+                type="button"
+                class="difficulty-btn"
+                data-difficulty="intermediate"
+              >
+                Intermediate
+              </button>
+
+              <button
+                type="button"
+                class="difficulty-btn"
+                data-difficulty="advanced"
+              >
+                Advanced
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="practiceSettingsSummary" class="setup-card" hidden>
+          <div id="practiceSettingsSummaryText"></div>
+          <button id="changeSettingsBtn" type="button">Change Settings</button>
         </div>
 
         <div class="quiz-toolbar">
