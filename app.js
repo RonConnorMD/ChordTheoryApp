@@ -747,6 +747,7 @@ document
     if (!currentQuestion) {
       return;
     }
+    document.getElementById("skipQuestionBtn").disabled = false;
     collapsePracticeSettings();
     document.getElementById("newQuestionBtn").style.display = "none";
     const q = currentQuestion;
@@ -951,7 +952,9 @@ difficultyInfoBtn.addEventListener("click", () => {
 // =======================================================================
 
 document.addEventListener("click", function (event) {
-  const nextButton = event.target.closest(".feedback-next-btn");
+  const nextButton = event.target.closest(
+    ".feedback-next-btn, #skipQuestionBtn",
+  );
 
   if (!nextButton) return;
 
@@ -970,8 +973,6 @@ document.addEventListener("click", function (event) {
   displaySelectedNotes();
 
   document.getElementById("quizFeedback").innerHTML = "";
-
-  document.getElementById("nextQuestionContainer").style.display = "none";
 
   document.getElementById("checkAnswerBtn").disabled = true;
 
@@ -1180,7 +1181,7 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 
   // Reset quiz controls
   document.getElementById("checkAnswerBtn").disabled = true;
-  document.getElementById("nextQuestionContainer").style.display = "none";
+  document.getElementById("nextQuestionBtn").style.display = "none";
 
   // Disable sound controls in Practice Chords
   audioManager.stopMusic();
@@ -1841,6 +1842,7 @@ function showHome() {
   displaySelectedNotes();
   renderPianoKeyboard("practiceChordKeyboard", []);
   document.getElementById("checkAnswerBtn").disabled = true;
+  document.getElementById("skipQuestionBtn").disabled = true;
 
   homeScreen.style.display = "block";
   setSoundControlsAvailability(true);

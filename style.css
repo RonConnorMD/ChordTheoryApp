@@ -1087,6 +1087,12 @@ button:disabled {
   margin-top: 6px;
 }
 
+#quizSection .quiz-actions button {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 20px;
+}
+
 /* ============================================================================
    LEARN CHORDS – INVERSION DISPLAY
    ============================================================================ */
