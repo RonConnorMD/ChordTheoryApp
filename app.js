@@ -845,6 +845,8 @@ document
     document.getElementById("newQuestionBtn").style.display = "none";
     const q = currentQuestion;
 
+    setupPracticeUnusualNotes(q);
+
     renderQuizNoteButtons();
 
     userAnswer = [];
