@@ -389,6 +389,37 @@
           <button id="closePracticeHelpBtn" type="button">Close Help</button>
         </div>
 
+        <template id="enharmonicHelpContent">
+          <h4>Understanding Note Names</h4>
+
+          <p>
+            You may occasionally see note names such as B#, Cb, E#, Fb, or notes
+            with double sharps and double flats.
+          </p>
+
+          <p>
+            These are called <em>enharmonic equivalents</em>: different ways of
+            naming notes that have the same sounding pitch.
+          </p>
+
+          <ul>
+            <li>C# and Db sound the same.</li>
+            <li>B# sounds the same as C.</li>
+            <li>Cb sounds the same as B.</li>
+            <li>
+              A double sharp raises a note by two semitones; a double flat (♭♭)
+              lowers it by two semitones. In written chord names, double sharps
+              are sometimes represented by x.
+            </li>
+          </ul>
+
+          <p>
+            These spellings are used to preserve correct musical notation and
+            chord construction. Although some may look unfamiliar, they are
+            intentional and musically correct.
+          </p>
+        </template>
+
         <div id="practiceSettingsPanels">
           <div class="setup-card">
             <h3>1. Select Chord Roots</h3>
@@ -875,6 +906,12 @@
             <div class="question-label">Create This Chord</div>
 
             <div id="quizQuestion"></div>
+
+            <button id="practiceUnusualNotesBtn" type="button" hidden>
+              Explain Unusual Notes
+            </button>
+
+            <div id="practiceUnusualNotesExplanation" hidden></div>
 
             <div id="quizAnswer"></div>
 

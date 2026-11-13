@@ -500,6 +500,48 @@ const chordContainer = document.getElementById("chordButtons");
   chordContainer.appendChild(button);
 });
 
+// =====================================================
+// SHARED HELP — EXPLAIN UNUSUAL NOTES
+// Used by Learn Chords and Practice Chords.
+// =====================================================
+
+function getUnusualNotesHelpHTML() {
+  return `
+        <h3>Understanding Note Names</h3>
+
+        <p>
+            You may occasionally see note names such as B#, Cb, E#, Fb, or notes
+            with double sharps and double flats.
+        </p>
+
+        <p>
+            These are called <em>enharmonic equivalents</em>: different ways of
+            naming notes that have the same sounding pitch.
+        </p>
+
+        <ul>
+            <li>C# and Db sound the same.</li>
+            <li>B# sounds the same as C.</li>
+            <li>Cb sounds the same as B.</li>
+            <li>
+                A double sharp raises a note by two semitones; a double flat
+                (𝄫) lowers it by two semitones. In written chord names, double
+                sharps are sometimes represented by x.
+            </li>
+        </ul>
+
+        <p>
+            These spellings are used to preserve correct musical notation and
+            chord construction. Although some may look unfamiliar, they are
+            intentional and musically correct.
+        </p>
+    `;
+}
+
+function hasUnusualNotes(notes) {
+  return notes.some((note) => /^(B#|Cb|E#|Fb|[A-G](?:##|bb))$/.test(note));
+}
+
 // ===============================================================
 //     LEARN CHORDS — CHORD LOOKUP
 // ===============================================================
@@ -534,10 +576,14 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
     <div class="card-value chord-symbol">${prettySymbol}</div>
   </div>
 
-  <div class="info-card">
+<div class="info-card">
     <div class="card-title">Notes</div>
     <div class="card-value notes">${prettyNotes}</div>
-  </div>
+    <button id="learnUnusualNotesBtn" type="button" hidden>
+        Explain Unusual Notes
+    </button>
+    <div id="learnUnusualNotesExplanation" hidden></div>
+</div>
 
   <div class="info-card">
     <div class="card-title">Formula</div>
@@ -549,6 +595,21 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
     <div class="card-value">${intervals}</div>
   </div>
   `;
+  const unusualNotesBtn = document.getElementById("learnUnusualNotesBtn");
+  unusualNotesBtn.hidden = !hasUnusualNotes(chordNotes(chord));
+  unusualNotesBtn.addEventListener("click", function () {
+    const explanation = document.getElementById("learnUnusualNotesExplanation");
+
+    explanation.hidden = !explanation.hidden;
+
+    unusualNotesBtn.textContent = explanation.hidden
+      ? "Explain Unusual Notes"
+      : "Hide Explanation";
+
+    if (!explanation.hidden) {
+      explanation.innerHTML = getUnusualNotesHelpHTML();
+    }
+  });
 });
 
 // ============================================================================
@@ -740,6 +801,38 @@ function buildFilteredQuestion() {
 // Initialize a new question, reset the answer selection, and
 // display the chord to identify.
 // ===============================================================
+// ===============================================================
+// PRACTICE CHORDS — UNUSUAL NOTES EXPLANATION
+// Configure the explanation button for any new question.
+// ===============================================================
+
+function setupPracticeUnusualNotes(question) {
+  const button = document.getElementById("practiceUnusualNotesBtn");
+  const explanation = document.getElementById(
+    "practiceUnusualNotesExplanation",
+  );
+
+  // Show the button only when the answer contains unusual notes
+  button.hidden = !hasUnusualNotes(question.answer);
+
+  // Reset the explanation for the new question
+  explanation.hidden = true;
+  explanation.innerHTML = "";
+  button.textContent = "Explain Unusual Notes";
+
+  button.onclick = function () {
+    explanation.hidden = !explanation.hidden;
+
+    button.textContent = explanation.hidden
+      ? "Explain Unusual Notes"
+      : "Hide Explanation";
+
+    if (!explanation.hidden) {
+      explanation.innerHTML = getUnusualNotesHelpHTML();
+    }
+  };
+}
+
 document
   .getElementById("newQuestionBtn")
   .addEventListener("click", function () {
@@ -979,6 +1072,8 @@ document.addEventListener("click", function (event) {
   document.getElementById("quizQuestion").innerHTML = prettyMusic(
     chordSymbol(q.root, q.type),
   );
+
+  setupPracticeUnusualNotes(q);
 
   document.getElementById("quizAnswer").textContent =
     `Enter ${q.answer.length} notes • 0 of ${q.answer.length} selected`;
@@ -1838,6 +1933,11 @@ function showHome() {
   document.getElementById("quizFeedback").innerHTML = "";
   document.getElementById("quizQuestion").innerHTML = "";
   document.getElementById("quizStatus").textContent = "";
+  document.getElementById("practiceUnusualNotesExplanation").hidden = true;
+  document.getElementById("practiceUnusualNotesExplanation").innerHTML = "";
+  document.getElementById("practiceUnusualNotesBtn").textContent =
+    "Explain Unusual Notes";
+  document.getElementById("practiceUnusualNotesBtn").hidden = true;
   userAnswer = [];
   displaySelectedNotes();
   renderPianoKeyboard("practiceChordKeyboard", []);

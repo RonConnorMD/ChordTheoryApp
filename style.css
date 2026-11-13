@@ -1109,3 +1109,18 @@ button:disabled {
   margin-top: 8px;
   margin-bottom: 12px;
 }
+
+/* Practice Chords — Unusual Notes Explanation */
+#practiceUnusualNotesExplanation {
+  text-align: left;
+  line-height: 1.5;
+}
+
+#practiceUnusualNotesExplanation h3 {
+  text-align: center;
+}
+
+/* Ensure HTML hidden attribute always takes precedence */
+[hidden] {
+  display: none !important;
+}
