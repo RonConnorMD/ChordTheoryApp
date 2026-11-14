@@ -2185,9 +2185,9 @@ document.querySelectorAll('input[name="bluesVariation"]').forEach((radio) => {
 // ============================================================================
 
 async function updateBuildVersion() {
-  const versionDisplay = document.getElementById("buildVersion");
+  const localDisplay = document.getElementById("localBuildVersion");
 
-  if (!versionDisplay) return;
+  if (!localDisplay) return;
 
   try {
     const response = await fetch("/__build-info", {
@@ -2195,7 +2195,7 @@ async function updateBuildVersion() {
     });
 
     if (!response.ok) {
-      throw new Error("Unable to retrieve build information");
+      throw new Error("Local build information unavailable");
     }
 
     const data = await response.json();
@@ -2211,9 +2211,10 @@ async function updateBuildVersion() {
       },
     );
 
-    versionDisplay.textContent = `LOCAL · Last modified: ${formattedTime}`;
+    localDisplay.textContent = `LOCAL · Last modified: ${formattedTime}`;
   } catch (error) {
-    versionDisplay.textContent = "Local version timestamp unavailable";
+    // Hide the local timestamp on the published version.
+    localDisplay.hidden = true;
   }
 }
 
