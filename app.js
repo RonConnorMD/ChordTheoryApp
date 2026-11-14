@@ -440,6 +440,7 @@ const rootContainer = document.getElementById("rootButtons");
 
 ROOTS.forEach((root) => {
   const button = document.createElement("button");
+  button.classList.add("learn-choice-btn");
 
   button.textContent = root;
 
@@ -492,6 +493,7 @@ const chordContainer = document.getElementById("chordButtons");
   "dominant7sharp9",
 ].forEach((type) => {
   const button = document.createElement("button");
+  button.classList.add("learn-choice-btn");
 
   button.textContent = DISPLAY_NAMES[type];
 

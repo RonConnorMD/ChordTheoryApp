@@ -1137,3 +1137,47 @@ button:disabled {
   color: #888;
   opacity: 0.8;
 }
+
+/* Learn Chords choice buttons */
+#rootButtons,
+#chordButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#rootButtons {
+  max-width: 900px;
+}
+
+#rootButtons .learn-choice-btn,
+#chordButtons .learn-choice-btn {
+  padding: 7px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#rootButtons .learn-choice-btn.selected,
+#chordButtons .learn-choice-btn.selected {
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+
+/* Learn Chords — Action Buttons */
+#lookupBtn,
+#showInversionsBtn {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 10px;
+  min-width: 180px;
+}
+
+/* Practice Chords — Help Button */
+#practiceHelpBtn {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background-color: #e8f3fa;
+}
