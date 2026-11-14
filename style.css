@@ -1124,3 +1124,16 @@ button:disabled {
 [hidden] {
   display: none !important;
 }
+
+/* ========================================================================
+   HOME SCREEN – LOCAL BUILD VERSION
+   ======================================================================== */
+
+.build-version {
+  margin-top: 18px;
+  padding-bottom: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+  opacity: 0.8;
+}

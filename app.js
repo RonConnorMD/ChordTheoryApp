@@ -148,12 +148,23 @@ let showingInversions = false;
 let currentLearnChord = null;
 
 const INVERSION_CHORD_TYPES = [
+  // Three-note chords
   "major",
   "minor",
   "diminished",
   "augmented",
   "sus2",
   "sus4",
+
+  // Four-note chords
+  "major7",
+  "dominant7",
+  "minor7",
+  "major6",
+  "minor6",
+  "halfDiminished7",
+  "diminished7",
+  "add9",
 ];
 
 const showInversionsBtn = document.getElementById("showInversionsBtn");
@@ -179,7 +190,7 @@ function updateLookupButton() {
 function updateSelectedChordDisplay() {
   showingInversions = false;
 
-  showInversionsBtn.hidden = !INVERSION_CHORD_TYPES.includes(selectedChordType);
+  showInversionsBtn.hidden = true;
 
   showInversionsBtn.textContent = "Show Inversions";
 
@@ -549,6 +560,7 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
   const chord = buildChord(selectedRoot, selectedChordType);
 
   currentLearnChord = chord;
+  showInversionsBtn.hidden = !INVERSION_CHORD_TYPES.includes(selectedChordType);
   showingInversions = false;
   showInversionsBtn.textContent = "Show Inversions";
 
@@ -614,37 +626,34 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
 
 // ============================================================================
 // LEARN CHORDS – CHORD INVERSIONS
+// Rotate the existing chord note objects to generate all inversion positions:
+// root position, first inversion, second inversion, and (for four-note chords)
+// third inversion.
 //
-// Rotate the existing chord note objects to produce root position,
-// first inversion, and second inversion.
+// The number of inversions generated is determined by the number of notes
+// in the chord.
 //
 // Existing note objects are preserved to maintain correct enharmonic spelling.
-// Applies only to supported three-note chords.
+// Applies to supported three-note and four-note chords.
 // ============================================================================
 function getChordInversions(chord) {
-  return [
-    chord,
-    [...chord.slice(1), chord[0]],
-    [...chord.slice(2), ...chord.slice(0, 2)],
-  ];
+  return Array.from({ length: chord.length }, (_, index) => [
+    ...chord.slice(index),
+    ...chord.slice(0, index),
+  ]);
 }
 
 // ============================================================================
 // LEARN CHORDS – RENDER CHORD INVERSIONS
 //
-// Display root position, first inversion, and second inversion together.
-// ============================================================================
-
-// ============================================================================
-// LEARN CHORDS – RENDER CHORD INVERSIONS
-//
-// Display all three chord positions, each with its own piano keyboard.
+// Display all chord positions together, each with its own piano keyboard.
+// Supports three-note chords (3 positions) and four-note chords (4 positions).
 // ============================================================================
 
 function renderChordInversions(chord) {
   const inversionDisplay = document.getElementById("inversionDisplay");
 
-  if (!chord || chord.length !== 3) {
+  if (!chord || ![3, 4].includes(chord.length)) {
     inversionDisplay.innerHTML = "";
     return;
   }
@@ -655,12 +664,14 @@ function renderChordInversions(chord) {
     "Root Position",
     "First Inversion",
     "Second Inversion",
+    "Third Inversion",
   ];
 
   const keyboardIds = [
     "rootInversionKeyboard",
     "firstInversionKeyboard",
     "secondInversionKeyboard",
+    "thirdInversionKeyboard",
   ];
 
   inversionDisplay.innerHTML = inversions
@@ -670,7 +681,7 @@ function renderChordInversions(chord) {
       <div class="info-card inversion-card">
         <div class="card-title">${inversionNames[index]}</div>
         <div class="card-value">
-          ${chordNotes(inversion).join(" – ")}
+          ${prettyMusic(chordNotes(inversion).join(" – "))}
         </div>
       </div>
 
@@ -2168,3 +2179,42 @@ function updateBluesResults() {
 document.querySelectorAll('input[name="bluesVariation"]').forEach((radio) => {
   radio.addEventListener("change", updateBluesResults);
 });
+
+// ============================================================================
+// HOME SCREEN — LOCAL BUILD TIMESTAMP
+// ============================================================================
+
+async function updateBuildVersion() {
+  const versionDisplay = document.getElementById("buildVersion");
+
+  if (!versionDisplay) return;
+
+  try {
+    const response = await fetch("/__build-info", {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Unable to retrieve build information");
+    }
+
+    const data = await response.json();
+
+    const formattedTime = new Date(data.lastModified).toLocaleString(
+      undefined,
+      {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      },
+    );
+
+    versionDisplay.textContent = `LOCAL · Last modified: ${formattedTime}`;
+  } catch (error) {
+    versionDisplay.textContent = "Local version timestamp unavailable";
+  }
+}
+
+updateBuildVersion();
