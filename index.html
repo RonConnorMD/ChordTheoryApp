@@ -98,7 +98,7 @@
               <!-- ========================================================= -->
               <!-- Here is where we update published date -->
               <!-- ========================================================= -->
-              PUBLISHED · Nov 15, 2026, 8:21 AM CT
+              PUBLISHED · Nov 16, 2026, 10:28 AM CT
             </div>
           </div>
         </div>
@@ -258,6 +258,12 @@
         <h2>Result</h2>
 
         <div id="result"></div>
+        <div
+          id="learnChordPlaybackStatus"
+          class="learn-chord-playback-status"
+          role="status"
+          aria-live="polite"
+        ></div>
 
         <div id="inversionDisplay">
           <div id="rootInversionKeyboard"></div>
@@ -265,7 +271,17 @@
           <div id="secondInversionKeyboard"></div>
         </div>
 
-        <div id="learnChordKeyboard" class="keyboard-container"></div>
+        <div id="learnChordKeyboardRow" class="keyboard-display-row" hidden>
+          <div id="learnChordKeyboard" class="keyboard-container"></div>
+          <button
+            id="playLearnChordBtn"
+            class="play-chord-btn"
+            type="button"
+            hidden
+          >
+            Play
+          </button>
+        </div>
 
         <hr />
 
@@ -893,6 +909,7 @@
 
       <script src="musicTheory.js"></script>
       <script src="audioManager.js"></script>
+      <script src="pianoPlayer.js"></script>
       <script src="app.js"></script>
     </div>
   </body>

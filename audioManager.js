@@ -67,7 +67,17 @@ const audioManager = (() => {
 
     if (!soundEnabled) {
       stopMusic();
+      pianoPlayer.stop();
     }
+  }
+
+  function playPianoChord(midiNotes) {
+    if (!soundEnabled) return Promise.resolve(false);
+    return pianoPlayer.playChord(midiNotes);
+  }
+
+  function stopPianoPlayback() {
+    pianoPlayer.stop();
   }
 
   // Check whether sound is enabled
@@ -139,5 +149,7 @@ const audioManager = (() => {
     setSoundEnabled,
     isSoundEnabled,
     playAnswerSound,
+    playPianoChord,
+    stopPianoPlayback,
   };
 })();

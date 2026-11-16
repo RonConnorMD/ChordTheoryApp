@@ -168,6 +168,60 @@ const INVERSION_CHORD_TYPES = [
 ];
 
 const showInversionsBtn = document.getElementById("showInversionsBtn");
+const learnChordKeyboardRow = document.getElementById("learnChordKeyboardRow");
+const playLearnChordBtn = document.getElementById("playLearnChordBtn");
+const learnChordPlaybackStatus = document.getElementById(
+  "learnChordPlaybackStatus",
+);
+
+function getLearnChordPlaybackNotes(inversionIndex = 0) {
+  if (!currentLearnChord || !selectedChordType) {
+    throw new Error("Look up a chord before playing it.");
+  }
+
+  const chordPitchClasses = currentLearnChord.map(pitchOf);
+  const bassPitchClass = chordPitchClasses[inversionIndex];
+  const bassMidi = 60 + bassPitchClass;
+
+  const upperNotes = chordPitchClasses
+    .filter((_, index) => index !== inversionIndex)
+    .map((pitchClass) => {
+      let midi = 60 + pitchClass;
+      while (midi <= bassMidi) midi += 12;
+      return midi;
+    })
+    .sort((a, b) => a - b);
+
+  return [bassMidi, ...upperNotes];
+}
+
+async function playLearnChordAtInversion(
+  inversionIndex = 0,
+  isAutomatic = false,
+  statusElement = learnChordPlaybackStatus,
+) {
+  statusElement.classList.remove("error");
+
+  if (!audioManager.isSoundEnabled()) {
+    if (!isAutomatic) statusElement.textContent = "Sound is turned off.";
+    return;
+  }
+
+  try {
+    const notes = getLearnChordPlaybackNotes(inversionIndex);
+    const didPlay = await audioManager.playPianoChord(notes);
+    if (!didPlay) return;
+    statusElement.textContent = "";
+  } catch (error) {
+    console.error("Unable to play Learn Chord piano samples:", error);
+    statusElement.textContent = error.message;
+    statusElement.classList.add("error");
+  }
+}
+
+playLearnChordBtn.addEventListener("click", () => {
+  playLearnChordAtInversion(0);
+});
 
 let currentQuestion = null;
 let userAnswer = [];
@@ -188,7 +242,12 @@ function updateLookupButton() {
 }
 
 function updateSelectedChordDisplay() {
+  audioManager.stopPianoPlayback();
   showingInversions = false;
+  learnChordKeyboardRow.hidden = true;
+  playLearnChordBtn.hidden = true;
+  learnChordPlaybackStatus.textContent = "";
+  learnChordPlaybackStatus.classList.remove("error");
 
   showInversionsBtn.hidden = true;
 
@@ -562,6 +621,14 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
   const chord = buildChord(selectedRoot, selectedChordType);
 
   currentLearnChord = chord;
+  learnChordKeyboardRow.hidden = false;
+  playLearnChordBtn.hidden = false;
+  playLearnChordBtn.setAttribute(
+    "aria-label",
+    `Play ${chordSymbol(selectedRoot, selectedChordType)} in root position`,
+  );
+  learnChordPlaybackStatus.textContent = "";
+  learnChordPlaybackStatus.classList.remove("error");
   showInversionsBtn.hidden = !INVERSION_CHORD_TYPES.includes(selectedChordType);
   showingInversions = false;
   showInversionsBtn.textContent = "Show Inversions";
@@ -624,6 +691,8 @@ document.getElementById("lookupBtn").addEventListener("click", function () {
       explanation.innerHTML = getUnusualNotesHelpHTML();
     }
   });
+
+  playLearnChordAtInversion(0, true);
 });
 
 // ============================================================================
@@ -687,7 +756,16 @@ function renderChordInversions(chord) {
         </div>
       </div>
 
-      <div id="${keyboardIds[index]}" class="keyboard-container"></div>
+      <div class="keyboard-display-row">
+        <div id="${keyboardIds[index]}" class="keyboard-container"></div>
+        <button
+          class="play-chord-btn play-inversion-btn"
+          type="button"
+          data-inversion-index="${index}"
+          aria-label="Play ${inversionNames[index].toLowerCase()}"
+        >Play</button>
+      </div>
+      <div class="learn-chord-playback-status inversion-playback-status" role="status" aria-live="polite"></div>
     </div>
   `,
     )
@@ -695,6 +773,19 @@ function renderChordInversions(chord) {
 
   inversions.forEach((inversion, index) => {
     renderPianoKeyboard(keyboardIds[index], inversion);
+  });
+
+  inversionDisplay.querySelectorAll(".play-inversion-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const statusElement = button
+        .closest(".inversion-section")
+        .querySelector(".inversion-playback-status");
+      playLearnChordAtInversion(
+        Number(button.dataset.inversionIndex),
+        false,
+        statusElement,
+      );
+    });
   });
 }
 
@@ -712,11 +803,13 @@ showInversionsBtn.addEventListener("click", function () {
     : "Show Inversions";
 
   if (showingInversions) {
+    learnChordKeyboardRow.hidden = true;
     document.getElementById("learnChordKeyboard").innerHTML = "";
     renderChordInversions(currentLearnChord);
   } else {
     document.getElementById("inversionDisplay").innerHTML = "";
 
+    learnChordKeyboardRow.hidden = false;
     renderPianoKeyboard("learnChordKeyboard", currentLearnChord);
   }
 });
@@ -1232,6 +1325,9 @@ document
     builderSection.style.display = "block";
     // Clear previous Learn Chords results when opening
     document.getElementById("learnChordKeyboard").innerHTML = "";
+    learnChordKeyboardRow.hidden = true;
+    playLearnChordBtn.hidden = true;
+    learnChordPlaybackStatus.textContent = "";
     document.getElementById("result").innerHTML = "";
     quizSection.style.display = "none";
 
@@ -1922,6 +2018,7 @@ document.getElementById("bluesOpenBtn").addEventListener("click", function () {
 // ===============================================================
 
 function showHome() {
+  audioManager.stopPianoPlayback();
   // Clear Learn Chords results
   // Reset Learn Chords selections
   selectedRoot = null;
@@ -1935,6 +2032,10 @@ function showHome() {
 
   document.getElementById("selectedChordDisplay").innerHTML = "";
   document.getElementById("learnChordKeyboard").innerHTML = "";
+  learnChordKeyboardRow.hidden = true;
+  playLearnChordBtn.hidden = true;
+  learnChordPlaybackStatus.textContent = "";
+  learnChordPlaybackStatus.classList.remove("error");
   showingInversions = false;
   currentLearnChord = null;
 
