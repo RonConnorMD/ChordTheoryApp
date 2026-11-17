@@ -1209,6 +1209,14 @@ button:disabled {
 }
 
 /* Learn Chords — Action Buttons */
+#inversionControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
 #lookupBtn,
 #showInversionsBtn {
   font-size: 1.1rem;
@@ -1216,6 +1224,28 @@ button:disabled {
   padding: 12px 20px;
   border-radius: 10px;
   min-width: 180px;
+}
+
+#showInversionsBtn {
+  background-color: #e8f3fa;
+  border: 2px solid #2878ad;
+  color: #174e73;
+  font-weight: 600;
+}
+
+#showInversionsBtn:hover {
+  background-color: #d7ebf7;
+}
+
+#showInversionsBtn:focus-visible {
+  outline: 3px solid #2878ad;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  #inversionControls {
+    align-items: stretch;
+  }
 }
 
 /* Practice Chords — Help Button */
