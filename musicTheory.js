@@ -166,6 +166,52 @@ const CHORDS = {
     { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
     { semitones: 15, letterSteps: 8, degree: "#9", interval: "Sharp 9th" },
   ],
+
+  minor11: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 3, letterSteps: 2, degree: "b3", interval: "Minor 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+    { semitones: 17, letterSteps: 10, degree: "11", interval: "Perfect 11th" },
+  ],
+
+  dominant7b5: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 6, letterSteps: 4, degree: "b5", interval: "Diminished 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+  ],
+
+  dominant7sharp11: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    {
+      semitones: 18,
+      letterSteps: 10,
+      degree: "#11",
+      interval: "Augmented 11th",
+    },
+  ],
+
+  dominant7b13: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 20, letterSteps: 12, degree: "b13", interval: "Minor 13th" },
+  ],
+
+  dominant13: [
+    { semitones: 0, letterSteps: 0, degree: "1", interval: "Root" },
+    { semitones: 4, letterSteps: 2, degree: "3", interval: "Major 3rd" },
+    { semitones: 7, letterSteps: 4, degree: "5", interval: "Perfect 5th" },
+    { semitones: 10, letterSteps: 6, degree: "b7", interval: "Minor 7th" },
+    { semitones: 14, letterSteps: 8, degree: "9", interval: "Major 9th" },
+    { semitones: 21, letterSteps: 12, degree: "13", interval: "Major 13th" },
+  ],
 };
 // ===============================================================
 // End of chord definitions
@@ -204,6 +250,11 @@ const CHORD_SYMBOLS = {
 
   dominant7b9: "7b9",
   dominant7sharp9: "7#9",
+  minor11: "m11",
+  dominant7b5: "7b5",
+  dominant7sharp11: "7#11",
+  dominant7b13: "7b13",
+  dominant13: "13",
 };
 
 // ===============================================================
@@ -679,6 +730,11 @@ function parseChordName(chordName) {
 
     "7b9": "dominant7b9",
     "7#9": "dominant7sharp9",
+    m11: "minor11",
+    "7b5": "dominant7b5",
+    "7#11": "dominant7sharp11",
+    "7b13": "dominant7b13",
+    13: "dominant13",
   };
 
   const type = suffixMap[suffix];

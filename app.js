@@ -481,6 +481,11 @@ const DISPLAY_NAMES = {
   minor9: "m9",
   dominant7b9: "7♭9",
   dominant7sharp9: "7♯9",
+  minor11: "m11",
+  dominant7b5: "7♭5",
+  dominant7sharp11: "7♯11",
+  dominant7b13: "7♭13",
+  dominant13: "13",
 };
 
 // ===============================================================
@@ -550,6 +555,11 @@ const chordContainer = document.getElementById("chordButtons");
 
   "dominant7b9",
   "dominant7sharp9",
+  "minor11",
+  "dominant7b5",
+  "dominant7sharp11",
+  "dominant7b13",
+  "dominant13",
 ].forEach((type) => {
   const button = document.createElement("button");
   button.classList.add("learn-choice-btn");
