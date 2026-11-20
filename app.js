@@ -1322,6 +1322,15 @@ const quizSection = document.getElementById("quizSection");
 
 const appHeader = document.querySelector(".app-header");
 
+function trackAppFeatureOpen(eventName) {
+  if (
+    window.location.hostname === "ronconnormd.github.io" &&
+    typeof window.gtag === "function"
+  ) {
+    window.gtag("event", eventName);
+  }
+}
+
 // ============================================================
 // APP NAVIGATION — LEARN CHORDS
 // The Home screen's Learn Chords button opens builderSection.
@@ -1329,6 +1338,7 @@ const appHeader = document.querySelector(".app-header");
 document
   .getElementById("learnChordsBtn")
   .addEventListener("click", function () {
+    trackAppFeatureOpen("learn_chords_open");
     audioManager.stopMusic();
     setSoundControlsAvailability(false);
     homeScreen.style.display = "none";
@@ -1355,6 +1365,7 @@ document
 // ===============================================================
 
 document.getElementById("showQuizBtn").addEventListener("click", function () {
+  trackAppFeatureOpen("practice_chords_open");
   // Restore Beginner Chords
   selectBeginnerChords();
 
@@ -1421,6 +1432,7 @@ document.getElementById("showQuizBtn").addEventListener("click", function () {
 document
   .getElementById("learnProgressionsHomeBtn")
   .addEventListener("click", function () {
+    trackAppFeatureOpen("learn_progressions_open");
     audioManager.stopMusic();
     setSoundControlsAvailability(false);
     homeScreen.style.display = "none";
@@ -2008,6 +2020,7 @@ document
 // ============================================================
 
 document.getElementById("bluesOpenBtn").addEventListener("click", function () {
+  trackAppFeatureOpen("twelve_bar_blues_open");
   homeScreen.style.display = "none";
   appHeader.style.display = "none";
   setSoundControlsAvailability(false);
