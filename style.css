@@ -373,6 +373,69 @@ button:disabled {
   transform: scale(1.02);
 }
 
+.app-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 28px auto 0;
+  padding: 20px 24px;
+  background: #fffaf0;
+  border: 1px solid #ead9ac;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.app-feedback-stars {
+  flex: 0 0 auto;
+  color: #e5a900;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.app-feedback-copy h2 {
+  margin: 0 0 4px;
+  color: #333;
+  font-size: 1.15rem;
+}
+
+.app-feedback-copy p {
+  margin: 0;
+  color: #666;
+  line-height: 1.4;
+}
+
+.app-feedback-link {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  border-radius: 8px;
+  background: #315c48;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.app-feedback-link:hover {
+  background: #254936;
+  transform: translateY(-1px);
+}
+
+.app-feedback-link:focus-visible {
+  outline: 3px solid #315c48;
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  .app-feedback {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
 .card-title {
   font-size: 1.7rem;
   font-weight: 600;
