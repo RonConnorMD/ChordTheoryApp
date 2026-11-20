@@ -12,11 +12,11 @@
     <script>
       if (window.location.hostname === "ronconnormd.github.io") {
         window.dataLayer = window.dataLayer || [];
-        function gtag() {
+        window.gtag = function () {
           window.dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-1E6C64JNVB");
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-1E6C64JNVB");
 
         const analyticsScript = document.createElement("script");
         analyticsScript.async = true;
@@ -114,7 +114,7 @@
               <!-- ========================================================= -->
               <!-- Here is where we update published date -->
               <!-- ========================================================= -->
-              PUBLISHED · Nov 20, 2026, 9:12 AM CT
+              PUBLISHED · Nov 20, 2026, 9:28 AM CT
             </div>
           </div>
         </div>
