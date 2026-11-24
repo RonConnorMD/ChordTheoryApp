@@ -304,12 +304,12 @@ button:disabled {
 
 .home-title {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .home-intro {
   max-width: 680px;
-  margin: 0 auto 24px;
+  margin: 0 auto 10px;
   line-height: 1.5;
   text-align: center;
 }
